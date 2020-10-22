@@ -15,9 +15,19 @@ app.set('puerto', 3000);
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+
+
 //routes
 app.use(personRoutes);
 
+
+/*app.use((error,req,res,next) =>{//es para los errores en la validaciones
+    res.status(400).json({
+        status:"error",
+        message: error.message,
+
+    });
+});*/
 
 
 //run
