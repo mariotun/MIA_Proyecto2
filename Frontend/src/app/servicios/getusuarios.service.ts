@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient,HttpHeaders } from '@angular/common/http'//se tiene que importar para que se puesa user el protocolo http(para las consultas)
+
 @Injectable({
   providedIn: 'root'
 })
-export class RegristrarService {
+export class GetusuariosService {
 
   private URL='http://localhost:3000/'//es el puerto donde se levante todo el backend
 
@@ -13,15 +14,10 @@ export class RegristrarService {
     "Content-Type":"application/json"//tipo de dato que se va a estar enviando(json)
   })
 
-  registrarse(user){//hara la peticion al servidor hecho con nodejs
-   return this.http.post<any>(this.URL+'/signup',user);//se envia a la BD los datos que trae user
- }
-
-
-
-
-
-
+  getuser(){
+    const url="http://localhost:3000/GetUsers";
+    return this.http.get(url);
+  }
 
 
 

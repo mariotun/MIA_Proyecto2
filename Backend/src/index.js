@@ -12,6 +12,7 @@ app.set('puerto', 3000);
 
 //middlewares
 //app.use(morgan('dev'));
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 

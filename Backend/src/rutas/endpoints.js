@@ -6,7 +6,7 @@ const validar=require('./validaciones');
 
 
 
-router.get('/', async (req,res)=>{
+router.get('/GetUsers', async (req,res)=>{
 
     consulta="select *from usuario"
    
@@ -75,7 +75,7 @@ router.post('/signup', async (req, res) =>{
     sql = "insert into usuario(IDCLIENTE,NOMBRE,APELLIDO,CORREO,CONTRASENA,CCONTRASENA,FECHANACIMIENTO,PAIS,CREDITO,FOTOGRAFIA,TIPOUSUARIO) \
     values (:IDCLIENTE,:NOMBRE,:APELLIDO,:CORREO,:CONTRASENA,:CCONTRASENA,to_date(:FECHANACIMIENTO,'DD-MM-YYYY'),:PAIS,:CREDITO,:FOTOGRAFIA,:TIPOUSUARIO)";
 
-    await BD.Open(sql, [IDCLIENTE, NOMBRE, APELLIDO, CORREO,CONTRASENA, CCONTRASENA, FECHANACIMIENTO, PAIS, CREDITO ,FOTOGRAFIA ,TIPOUSUARIO], true);
+    var respuesta=await BD.Open(sql, [IDCLIENTE, NOMBRE, APELLIDO, CORREO,CONTRASENA, CCONTRASENA, FECHANACIMIENTO, PAIS, CREDITO ,FOTOGRAFIA ,TIPOUSUARIO], true);
 
     /*res.status(200).json({
         "IDCLIENTE": IDCLIENTE,
@@ -99,7 +99,11 @@ router.post('/signup', async (req, res) =>{
 
 
     }catch(e){
-        console.log('ERROR EN REGISTRAR:',e)
+        //console.log('ERROR EN REGISTRAR:',e)
+        res.status(400).json({
+            status:"Bad",
+            message:""+e,
+        });
     }
 
 
@@ -107,8 +111,86 @@ router.post('/signup', async (req, res) =>{
 
 
 //MODIFICAR******************************************************************************************************************
-router.get('/update',async() =>{
+router.put('/updateuser',async(req, res) =>{
 
+    try{
+
+        let result=validar.validar_registro(req.body);
+        
+        if ( result !== ""){
+           // throw new Error("Los datos no son los correctos para ser registrados.");
+           res.status(400).json({
+            status:result,
+            });
+
+        }else{
+            //sql = "update person set username=:username, firstname=:firstname, lastname=:lastname where codu=:codu";
+        const { IDCLIENTE, NOMBRE, APELLIDO, CORREO,CONTRASENA, CCONTRASENA, FECHANACIMIENTO, PAIS, CREDITO ,FOTOGRAFIA ,TIPOUSUARIO } = req.body;
+        
+        consulta = "update usuario set NOMBRE=:NOMBRE, APELLIDO=:APELLIDO, CORREO=:CORREO,CONTRASENA=:CONTRASENA ,CCONTRASENA=:CCONTRASENA,\
+        FECHANACIMIENTO=to_date(:FECHANACIMIENTO,'DD-MM-YYYY'), PAIS=:PAIS, CREDITO=:CREDITO, FOTOGRAFIA=:FOTOGRAFIA, TIPOUSUARIO=:TIPOUSUARIO where IDCLIENTE=:IDCLIENTE";
+    
+        await BD.Open(consulta, [ NOMBRE, APELLIDO, CORREO,CONTRASENA, CCONTRASENA, FECHANACIMIENTO, PAIS, CREDITO ,FOTOGRAFIA ,TIPOUSUARIO ,IDCLIENTE], true);
+    
+
+        //const { IDCLIENTE }=req.body;
+        consulta2="select *from usuario where IDCLIENTE=:IDCLIENTE"
+   
+        let result2 = await BD.Open(consulta2, [IDCLIENTE], false);
+        Users = [];
+
+    //res.json(result.rows);
+    //console.log(result.rows);
+
+    result2.rows.map(user => {
+        let userSchema = {
+            "IDCLIENTE": user[0],
+            "NOMBRE": user[1],
+            "APELLIDO": user[2],
+            "CORREO": user[3],
+            "CONTRASENA": user[4],
+            "CCONTRASENA": user[5],
+            "FECHANACIMIENTO": user[6],
+            "PAIS": user[7],
+            "CREDITO": user[8],
+            "FOTOGRAFIA": user[9],
+            "TIPOUSUARIO": user[10]
+        }
+
+        Users.push(userSchema);
+    })
+
+         res.json(Users);
+
+        /*res.status(200).json({
+            "IDCLIENTE": IDCLIENTE,
+            "NOMBRE": NOMBRE,
+            "APELLIDO": APELLIDO,
+            "CORREO": CORREO,
+            "CONTRASENA": CONTRASENA,
+            "CCONTRASENA": CCONTRASENA,
+            "FECHANACIMIENTO": FECHANACIMIENTO,
+            "PAIS": PAIS,
+            "CREDITO": CREDITO,
+            "FOTOGRAFIA": FOTOGRAFIA,
+            "TIPOUSUARIO": TIPOUSUARIO
+                    })*/
+    
+        /*res.status(200).json({
+            status:"ok",
+            message:"Datos modificados correctamente."
+        });*/
+        
+        }
+    
+    
+        }catch(e){
+           // console.log('ERROR AL MODIFICAR DATOS DE USUARIO:',e)
+            res.status(400).json({
+                status:"Bad",
+                message:""+e,
+            });
+        }
 
 
 })

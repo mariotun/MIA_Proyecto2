@@ -6,6 +6,7 @@ import { from } from 'rxjs';
 import {SigninComponent } from './componentes/signin/signin.component'//para entrar a la cuenta
 import {SignoutComponent} from './componentes/signout/signout.component'//para salir de la cuenta
 import {SignupComponent} from './componentes/signup/signup.component'//para registrarse y obtener una cuenta 
+import { GetuserComponent } from './componentes/getuser/getuser.component'//para obtener los ususarios registrados
 
 
 const routes: Routes = [
@@ -24,6 +25,11 @@ const routes: Routes = [
   {
     path:'signup',
     component:SignupComponent
+
+  },
+  {
+    path:'getuser',
+    component:GetuserComponent
 
   }
 

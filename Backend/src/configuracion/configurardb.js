@@ -19,7 +19,9 @@ async function Open(sql, binds, autoCommit) {
     return result;
 
     }catch(e){
-        console.log('ERROR:',e)
+      //  console.log('ERROR:',e)
+        throw new Error("La consulta fallo,revise sus datos por favor."+e);
+        
     }
 
 }

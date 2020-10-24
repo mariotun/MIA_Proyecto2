@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RegristrarService } from '../../servicios/regristrar.service'
+import { RegristrarService } from '../../servicios/regristrar.service'//se importo tambien , es el servicio para usarlo en el componente
 
 @Component({
   selector: 'app-signup',
@@ -8,19 +8,28 @@ import { RegristrarService } from '../../servicios/regristrar.service'
 })
 export class SignupComponent implements OnInit {
 
-  user={
+  user={//es un objeto
+    nombreu:"",
+    apellidou:"",
+    email:"",
+    nacimientou:"",
+    paisu:"",
+    passwordu:"",
+    confpasswordu:"",
     
   }
 
   constructor(private registrarservice: RegristrarService) { } //instancia de la clase , con esto ya se puede usat 
-  //el metodo se signup() para autentificar 
+  //el metodo de signup() para autentificar 
 
   ngOnInit(): void {
   }
 
-  SignUp(){
-    //console.log(this.user)
-    this.registrarservice.registrarse(this.user)
+  SignUp(){//metodo de la clase
+
+    console.log(this.user)
+    this.user.nombreu=""
+    /*this.registrarservice.registrarse(this.user)
     .subscribe(//la respuesta que nos puede devolver el servidor
       
       res =>{
@@ -29,7 +38,7 @@ export class SignupComponent implements OnInit {
       err =>{
         console.log(err)
       }
-    )
+    )*/
   }
 
 }

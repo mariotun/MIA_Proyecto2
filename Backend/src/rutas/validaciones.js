@@ -1,4 +1,5 @@
 
+//const yup = require('yup');
 /*class Validacion {
 
     constructor(){
@@ -6,6 +7,24 @@
     };
 }
 module.exports= Validacion ;*/
+
+function validar_login(data){
+    
+    //   const schema=yup.object().shape({ });
+   
+    const { CORREO,CONTRASENA } = data;
+   
+    if( typeof CORREO !== "string" || CORREO !== "" ){
+       return "El correo no es valido.";
+   
+    }else if( typeof CONTRASENA !== "string" || CONTRASENA !== "" ){
+       return "La contraseña no es valido.";
+    }
+   
+    return "";
+   
+   }
+// ***********************************************************************************************************************
 
 function validar_registro(data){
 
@@ -46,12 +65,23 @@ function validar_registro(data){
         return "El tipo de usuario no es valido para ser registrado.";
     }
 
-    return ""
+    return "";
+
+}
+
+// ***********************************************************************************************************************
+
+
+function validar_modificar_usuario(data){
+
+    const { IDCLIENTE, NOMBRE, APELLIDO, CORREO,CONTRASENA, CCONTRASENA, FECHANACIMIENTO, PAIS, CREDITO ,FOTOGRAFIA ,TIPOUSUARIO } = data;
+
 
 }
 
 
 module.exports={
-    validar_registro
+    validar_registro,
+    validar_login
 };
 
