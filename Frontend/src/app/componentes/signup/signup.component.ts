@@ -27,8 +27,21 @@ export class SignupComponent implements OnInit {
 
   SignUp(){//metodo de la clase
 
-    console.log(this.user)
-    this.user.nombreu=""
+    this.registrarservice.registrar_usuario(this.user.nombreu,this.user.apellidou,this.user.email,this.user.nacimientou
+      ,this.user.paisu,this.user.passwordu,this.user.confpasswordu)
+      
+      .subscribe(
+        res=>{
+          console.log(res);
+        },
+        err =>{
+          console.log(err);
+        }
+      )
+
+    //console.log(this.user)
+    //this.user.nombreu=""
+
     /*this.registrarservice.registrarse(this.user)
     .subscribe(//la respuesta que nos puede devolver el servidor
       

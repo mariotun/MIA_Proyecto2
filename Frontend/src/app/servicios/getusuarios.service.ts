@@ -6,7 +6,7 @@ import { HttpClient,HttpHeaders } from '@angular/common/http'//se tiene que impo
 })
 export class GetusuariosService {
 
-  private URL='http://localhost:3000/'//es el puerto donde se levante todo el backend
+  //private URL='http://localhost:3000/'//es el puerto donde se levante todo el backend
 
   constructor(private http:HttpClient) { }//se intancia el modulo en la clase
 
@@ -14,10 +14,14 @@ export class GetusuariosService {
     "Content-Type":"application/json"//tipo de dato que se va a estar enviando(json)
   })
 
+
+  //ES PARA OBTENER LOS USUARIOS
   getuser(){
     const url="http://localhost:3000/GetUsers";
     return this.http.get(url);
   }
+
+  //ES PARA ACTUALIZAR LOS DATOS DEL USUARIO
 
 
 

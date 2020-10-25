@@ -17,6 +17,7 @@ export class GetuserComponent implements OnInit {
       this.Usuarios=res;
      // console.log(res[0].NOMBRE);
     })
+    
   }
 
   Usuarios: UserInterface[] = [];
