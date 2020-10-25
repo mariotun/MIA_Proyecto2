@@ -3,3 +3,43 @@
     <button class="btn btn-primary btn-lg btn-block">Ver usuarios registrados</button>
 
 </div>
+
+
+<div class="container" style="text-align:center;">
+<table class="table table-hover row m-0 justify-content-center align-items-center vh-80"  >
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Apellido</th>
+        <th scope="col">Correo</th>
+        <th scope="col">Contraseña</th>
+        <th scope="col">Conf.Contraseña</th>
+        <th scope="col">Fecha Nacimiento</th>
+        <th scope="col">Pais</th>
+        <th scope="col">Credito</th>
+        <th scope="col">Tipo Usuario</th>
+        <th scope="col">Fotografia</th>
+      </tr>
+    </thead>
+    <tbody>
+        
+      <tr *ngFor="let usuario of Usuarios">
+       <!-- <th scope="row">1</th> -->
+        <td> {{usuario.IDCLIENTE}} </td>
+        <td>{{usuario.NOMBRE}}</td>
+        <td>{{usuario.APELLIDO}}</td>
+        <td>{{usuario.CORREO}}</td>
+        <td>{{usuario.CONTRASENA}}</td>
+        <td>{{usuario.CCONTRASENA}}</td>
+        <td>{{usuario.FECHANACIMIENTO}}</td>
+        <td>{{usuario.PAIS}}</td>
+        <td>{{usuario.CREDITO}}</td>
+        <td>{{usuario.TIPOUSUARIO}}</td>
+        <td>{{usuario.FOTOGRAFIA}}</td>
+      </tr>
+    
+      
+    </tbody>
+  </table>
+</div>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { GetusuariosService } from 'src/app/servicios/getusuarios.service';
+import { UserInterface } from '../../models/user-interface';
 
 @Component({
   selector: 'app-getuser',
@@ -12,10 +13,13 @@ export class GetuserComponent implements OnInit {
 
   ngOnInit(): void {//esto se ejecuta primero , antes que el metod de abajo
 
-    this.getusuarios.getuser().subscribe((res)=>{
-      console.log(res);
+    this.getusuarios.getuser().subscribe((res:UserInterface[])=>{
+      this.Usuarios=res;
+     // console.log(res[0].NOMBRE);
     })
   }
+
+  Usuarios: UserInterface[] = [];
 
   ObtenerUsuarios(){
     
