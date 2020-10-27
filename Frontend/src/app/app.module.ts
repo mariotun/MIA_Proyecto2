@@ -10,6 +10,8 @@ import { SignupComponent } from './componentes/signup/signup.component';
 import { SigninComponent } from './componentes/signin/signin.component';
 import { SignoutComponent } from './componentes/signout/signout.component';
 import { GetuserComponent } from './componentes/getuser/getuser.component';
+import { UsuarioComponent } from './componentes/usuario/usuario.component';
+import { ProductoComponent } from './componentes/producto/producto.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,9 @@ import { GetuserComponent } from './componentes/getuser/getuser.component';
     SignupComponent,
     SigninComponent,
     SignoutComponent,
-    GetuserComponent
+    GetuserComponent,
+    UsuarioComponent,
+    ProductoComponent
   ],
   imports: [
     BrowserModule,

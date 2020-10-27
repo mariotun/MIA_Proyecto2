@@ -7,6 +7,8 @@ import {SigninComponent } from './componentes/signin/signin.component'//para ent
 import {SignoutComponent} from './componentes/signout/signout.component'//para salir de la cuenta
 import {SignupComponent} from './componentes/signup/signup.component'//para registrarse y obtener una cuenta 
 import { GetuserComponent } from './componentes/getuser/getuser.component'//para obtener los ususarios registrados
+import { UsuarioComponent } from './componentes/usuario/usuario.component'
+import { ProductoComponent} from './componentes/producto/producto.component'
 
 
 const routes: Routes = [
@@ -30,6 +32,16 @@ const routes: Routes = [
   {
     path:'getuser',
     component:GetuserComponent
+
+  },
+  {
+    path:'usuario',
+    component:UsuarioComponent
+
+  },
+  {
+    path:'producto',
+    component:ProductoComponent
 
   }
 
