@@ -10,6 +10,7 @@ import { GetuserComponent } from './componentes/getuser/getuser.component'//para
 import { UsuarioComponent } from './componentes/usuario/usuario.component'
 import { ProductoComponent} from './componentes/producto/producto.component'
 import { AdminComponent } from './componentes/admin/admin.component'
+import { CategoriaComponent } from './componentes/categoria/categoria.component'
 
 
 const routes: Routes = [
@@ -48,6 +49,11 @@ const routes: Routes = [
   {
     path:'administrador',
     component: AdminComponent
+
+  },
+  {
+    path:'categoria',
+    component: CategoriaComponent
 
   }
 

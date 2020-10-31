@@ -13,6 +13,7 @@ import { GetuserComponent } from './componentes/getuser/getuser.component';
 import { UsuarioComponent } from './componentes/usuario/usuario.component';
 import { ProductoComponent } from './componentes/producto/producto.component';
 import { AdminComponent } from './componentes/admin/admin.component';
+import { CategoriaComponent } from './componentes/categoria/categoria.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { AdminComponent } from './componentes/admin/admin.component';
     GetuserComponent,
     UsuarioComponent,
     ProductoComponent,
-    AdminComponent
+    AdminComponent,
+    CategoriaComponent
   ],
   imports: [
     BrowserModule,

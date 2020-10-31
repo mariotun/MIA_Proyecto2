@@ -51,7 +51,21 @@ registrar_producto(){
 
 
 //ES PARA REGISTRAR CATEGORIAS **********************************************************************************
-registrar_categoria(){
+registrar_categoria(nombrecategoria:string){
+
+  const url2="http://localhost:3000/crearcategoria";
+
+   return this.http.post(
+    url2,
+    { 
+      "IDCATEGORIA": 13,
+      "NOMBRECATEGORIA": nombrecategoria
+      
+    },
+    { headers: this.headers }
+  ).pipe(map(data => data));
+
+
 
 }
 

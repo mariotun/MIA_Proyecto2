@@ -13,3 +13,8 @@ export interface UserInterface{
     FOTOGRAFIA: string,
     TIPOUSUARIO: string
 }
+
+export interface CategoriaInterface{
+    IDCATEGORIA:number,
+    NOMBRECATEGORIA: string
+}

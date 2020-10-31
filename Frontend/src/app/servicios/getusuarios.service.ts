@@ -24,5 +24,11 @@ export class GetusuariosService {
   //ES PARA ACTUALIZAR LOS DATOS DEL USUARIO
 
 
+  //ES PARA OBTENER LAS CATEGORIAS
+  getcategoria(){
+    const url2="http://localhost:3000/getcategoria";
+    return this.http.get(url2);
+  }
+
 
 }

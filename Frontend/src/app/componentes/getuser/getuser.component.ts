@@ -26,4 +26,6 @@ export class GetuserComponent implements OnInit {
     
   }
 
+  
+
 }

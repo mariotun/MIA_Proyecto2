@@ -218,26 +218,27 @@ router.post('/crearcategoria', async (req, res) =>{
    
     //consulta = "insert into categoria(IDCATEGORIA,NOMBRECATEGORIA) values (:IDCATEGORIA,:NOMBRECATEGORIA)";
     consulta="begin crearcategoria(:IDCATEGORIA,:NOMBRECATEGORIA); end;"
-
     var respuesta=await BD.Open(consulta, [IDCATEGORIA, NOMBRECATEGORIA], true);
 
-    /*res.status(200).json({
-        "IDCLIENTE": IDCLIENTE,
-        "NOMBRE": NOMBRE,
-        "APELLIDO": APELLIDO,
-        "CORREO": CORREO,
-        "CONTRASENA": CONTRASENA,
-        "CCONTRASENA": CCONTRASENA,
-        "FECHANACIMIENTO": FECHANACIMIENTO,
-        "PAIS": PAIS,
-        "CREDITO": CREDITO,
-        "FOTOGRAFIA": FOTOGRAFIA,
-        "TIPOUSUARIO": TIPOUSUARIO
-    })*/
 
-    res.json({
-        status:"ok",
-    });
+    consulta="select *from categoria"
+    let result = await BD.Open(consulta, [], false);
+    Users = [];
+    result.rows.map(user => {
+        let userSchema = {
+            "IDCATEGORIA": user[0],
+            "NOMBRECATEGORIA": user[1]
+        }
+
+        Users.push(userSchema);
+    })
+
+    res.status(200).json(Users);
+
+
+   // res.json({
+     //   status:"ok",
+   // });
     
     }
 

@@ -19,6 +19,7 @@ export class SignupComponent implements OnInit {
     
   }
 
+  
   constructor(private registrarservice: RegristrarService) { } //instancia de la clase , con esto ya se puede usat 
   //el metodo de signup() para autentificar 
 
@@ -53,5 +54,7 @@ export class SignupComponent implements OnInit {
       }
     )*/
   }
+
+
 
 }
