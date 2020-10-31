@@ -12,6 +12,7 @@ import { SignoutComponent } from './componentes/signout/signout.component';
 import { GetuserComponent } from './componentes/getuser/getuser.component';
 import { UsuarioComponent } from './componentes/usuario/usuario.component';
 import { ProductoComponent } from './componentes/producto/producto.component';
+import { AdminComponent } from './componentes/admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { ProductoComponent } from './componentes/producto/producto.component';
     SignoutComponent,
     GetuserComponent,
     UsuarioComponent,
-    ProductoComponent
+    ProductoComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,

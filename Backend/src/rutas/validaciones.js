@@ -267,6 +267,54 @@ function validar_denuncia(data){
 }
 
 // ***********************************************************************************************************************
+function validar_detalleventa(data){
+
+    const {  IDDETALLEVENTA, CANTIDADVENTA, TOTALVENTA , IDVENTA, IDPRODUCTO} = data;
+
+    if ( typeof IDDETALLEVENTA !=="number"){
+        //throw new Error("El ID no es el correcto para ser registrado.");
+        return "El ID del detalle de venta no es el correcto para ser registrado.";
+    }else if ( typeof CANTIDADVENTA !== "number" || CANTIDADVENTA===null){
+        //throw new Error("El nombre no es valido para ser registrado.");
+        return "La cantidad de venta no es valida para ser registrado.";
+    }else if(typeof TOTALVENTA !== "number" || TOTALVENTA === null){
+        //throw new Error("El apellido no es valido para ser registrado.");
+        return "El total de la venta no es valida para ser registrado.";
+    }else if( typeof IDVENTA !== "number" ){
+        //throw new Error("La contrasena no es valido para ser registrado.");
+        return "El id de la venta no es valida para ser registrado.";
+    }else if( typeof IDPRODUCTO !== "number" ){
+        //throw new Error("La contrasena no es valido para ser registrado.");
+        return "El id del producto no es valido para ser registrado.";
+    }
+
+    return "";
+
+}
+
+// ***********************************************************************************************************************
+function validar_bitacora(data){
+
+    const {  IDBITACORA, DESCRIPCION, FECHAACCION , CORREO} = data;
+
+    if ( typeof IDBITACORA !=="number"){
+        //throw new Error("El ID no es el correcto para ser registrado.");
+        return "El ID de la bitacora no es el correcto para ser registrado.";
+    }else if ( typeof DESCRIPCION !== "string" || DESCRIPCION==="" ){
+        //throw new Error("El nombre no es valido para ser registrado.");
+        return "La descripcion para la bitacora no es valida para ser registrado.";
+    }else if(typeof FECHAACCION !== "string" || FECHAACCION === "" ){
+        //throw new Error("El apellido no es valido para ser registrado.");
+        return "La fecha no es valida para ser registrado.";
+    }else if( typeof CORREO !== "string" || CORREO ==="" ){
+        //throw new Error("La contrasena no es valido para ser registrado.");
+        return "El correo del cliente no es valida para ser registrado.";
+    }
+
+    return "";
+
+}
+
 
 
 // ***********************************************************************************************************************
@@ -280,6 +328,8 @@ module.exports={
     validar_dcompra,
     validar_comentario,
     validar_publicacion,
-    validar_denuncia
+    validar_denuncia,
+    validar_detalleventa,
+    validar_bitacora
 };
 

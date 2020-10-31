@@ -11,9 +11,9 @@ export class GetuserComponent implements OnInit {
 
   constructor(private getusuarios:GetusuariosService) { }
 
-  ngOnInit(): void {//esto se ejecuta primero , antes que el metod de abajo
+  ngOnInit(): void {//esto se ejecuta primero , antes que el metodo de abajo
 
-    this.getusuarios.getuser().subscribe((res:UserInterface[])=>{
+    this.getusuarios.getuser().subscribe((res:UserInterface[])=>{//subscribe escucha si el servidor le va a decir algo 
       this.Usuarios=res;
      // console.log(res[0].NOMBRE);
     })

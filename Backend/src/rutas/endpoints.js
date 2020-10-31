@@ -797,6 +797,214 @@ router.get('/getdenuncia', async (req,res)=>{
 
 })
 
+//***********************************************VENTA************************************************************************
+router.post('/venta', async (req, res) =>{
+
+    try{
+
+   /* let result=validar.validar_comentario(req.body);
+    
+    if ( result !== ""){
+       // throw new Error("Los datos no son los correctos para ser registrados.");
+       res.status(400).json({
+        status:result,
+        });
+    }else{*/
+
+    const { IDVENTA, IDCLIENTE } = req.body;
+   
+    //consulta = "insert into categoria(IDCATEGORIA,NOMBRECATEGORIA) values (:IDCATEGORIA,:NOMBRECATEGORIA)";
+    consulta="insert into venta(IDVENTA, IDCLIENTE) \
+     values (:IDVENTA, :IDCLIENTE)"
+
+    var respuesta=await BD.Open(consulta, [ IDVENTA, IDCLIENTE ], true);
+
+    res.json({
+        status:"ok",
+    });
+    
+   // }
+
+
+    }catch(e){
+        //console.log('ERROR EN REGISTRAR:',e)
+        res.status(400).json({
+            status:"Bad",
+            message:""+e,
+        });
+    }
+
+
+})
+
+//**********************************************GET_VENTA*************************************************************************
+router.get('/getventa', async (req,res)=>{
+
+    consulta="select *from venta"
+   
+    let result = await BD.Open(consulta, [], false);
+    Ventas = [];
+
+    //res.json(result.rows);
+    //console.log(result.rows);
+
+    result.rows.map(venta => {
+        let ventaSchema = {
+            "IDVENTA": venta [0],
+            "IDCLIENTE": venta[1]
+        }
+
+        Ventas.push(ventaSchema);
+    })
+
+    res.json(Ventas);
+    //res,json(user);
+
+})
+
+//************************************************DETALLE_VENTA****************************************************************
+router.post('/detalleventa', async (req, res) =>{
+
+    try{
+
+    let result=validar.validar_detalleventa(req.body);
+    
+    if ( result !== ""){
+       // throw new Error("Los datos no son los correctos para ser registrados.");
+       res.status(400).json({
+        status:result,
+        });
+    }else{
+
+    const { IDDETALLEVENTA, CANTIDADVENTA, TOTALVENTA , IDVENTA, IDPRODUCTO } = req.body;
+   
+    //consulta = "insert into categoria(IDCATEGORIA,NOMBRECATEGORIA) values (:IDCATEGORIA,:NOMBRECATEGORIA)";
+    consulta="insert into detalleventa(IDDETALLEVENTA, CANTIDADVENTA, TOTALVENTA , IDVENTA, IDPRODUCTO) \
+     values (:IDDETALLEVENTA, :CANTIDADVENTA, :TOTALVENTA , :IDVENTA, :IDPRODUCTO)"
+
+    var respuesta=await BD.Open(consulta, [ IDDETALLEVENTA, CANTIDADVENTA, TOTALVENTA , IDVENTA, IDPRODUCTO ], true);
+
+    /*res.status(200).json({
+        "IDCLIENTE": IDCLIENTE,
+        "NOMBRE": NOMBRE,
+        "APELLIDO": APELLIDO,
+        "CORREO": CORREO,
+        "CONTRASENA": CONTRASENA,
+        "CCONTRASENA": CCONTRASENA,
+        "FECHANACIMIENTO": FECHANACIMIENTO,
+        "PAIS": PAIS,
+        "CREDITO": CREDITO,
+        "FOTOGRAFIA": FOTOGRAFIA,
+        "TIPOUSUARIO": TIPOUSUARIO
+    })*/
+
+    res.json({
+        status:"ok",
+    });
+    
+    }
+
+
+    }catch(e){
+        //console.log('ERROR EN REGISTRAR:',e)
+        res.status(400).json({
+            status:"Bad",
+            message:""+e,
+        });
+    }
+
+
+})
+
+
+//***********************************************BITACORA*****************************************************************
+router.post('/bitacora', async (req, res) =>{
+
+    try{
+
+    let result=validar.validar_bitacora(req.body);
+    
+    if ( result !== ""){
+       // throw new Error("Los datos no son los correctos para ser registrados.");
+       res.status(400).json({
+        status:result,
+        });
+    }else{
+
+    const { IDBITACORA, DESCRIPCION, FECHAACCION , CORREO } = req.body;
+   
+    //consulta = "insert into categoria(IDCATEGORIA,NOMBRECATEGORIA) values (:IDCATEGORIA,:NOMBRECATEGORIA)";
+    consulta="insert into bitacora(IDBITACORA, DESCRIPCION, FECHAACCION , CORREO) \
+     values (:IDBITACORA, :DESCRIPCION, to_date(:FECHAACCION,'DD-MM-YYYY') , :CORREO)"
+
+    var respuesta=await BD.Open(consulta, [ IDBITACORA, DESCRIPCION, FECHAACCION , CORREO ], true);
+
+    /*res.status(200).json({
+        "IDCLIENTE": IDCLIENTE,
+        "NOMBRE": NOMBRE,
+        "APELLIDO": APELLIDO,
+        "CORREO": CORREO,
+        "CONTRASENA": CONTRASENA,
+        "CCONTRASENA": CCONTRASENA,
+        "FECHANACIMIENTO": FECHANACIMIENTO,
+        "PAIS": PAIS,
+        "CREDITO": CREDITO,
+        "FOTOGRAFIA": FOTOGRAFIA,
+        "TIPOUSUARIO": TIPOUSUARIO
+    })*/
+
+    res.json({
+        status:"ok",
+    });
+    
+    }
+
+
+    }catch(e){
+        //console.log('ERROR EN REGISTRAR:',e)
+        res.status(400).json({
+            status:"Bad",
+            message:""+e,
+        });
+    }
+
+
+})
+
+
+//*******************************************GET_BITACORA****************************************************************************
+router.get('/getbitacora', async (req,res)=>{
+
+    consulta="select *from bitacora"
+   
+    let result = await BD.Open(consulta, [], false);
+    Bitacora = [];
+
+    //res.json(result.rows);
+    //console.log(result.rows);
+
+    result.rows.map(bitacora => {
+        let bitacoraSchema = {
+            "IDBITACORA": bitacora [0],
+            "DESCRIPCION": bitacora[1],
+            "FECHAACCION": bitacora[2],
+            "CORREO": bitacora[3]
+        }
+
+        Bitacora.push(bitacoraSchema);
+    })
+
+    res.json(Bitacora);
+    //res,json(user);
+
+})
+
+//***********************************************************************************************************************
+
+
+//***********************************************************************************************************************
+
+
 //***********************************************************************************************************************
 
 

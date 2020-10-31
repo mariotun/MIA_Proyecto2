@@ -9,6 +9,7 @@ import {SignupComponent} from './componentes/signup/signup.component'//para regi
 import { GetuserComponent } from './componentes/getuser/getuser.component'//para obtener los ususarios registrados
 import { UsuarioComponent } from './componentes/usuario/usuario.component'
 import { ProductoComponent} from './componentes/producto/producto.component'
+import { AdminComponent } from './componentes/admin/admin.component'
 
 
 const routes: Routes = [
@@ -42,6 +43,11 @@ const routes: Routes = [
   {
     path:'producto',
     component:ProductoComponent
+
+  },
+  {
+    path:'administrador',
+    component: AdminComponent
 
   }
 
