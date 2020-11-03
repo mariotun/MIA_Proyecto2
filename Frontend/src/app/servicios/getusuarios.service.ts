@@ -30,5 +30,16 @@ export class GetusuariosService {
     return this.http.get(url2);
   }
 
+  //ES PARA OBTENER LA ID DE LA CATEGORIA
+  getidcategoria(){
+    const url="http://localhost:3000/getidcategoria";
+    return this.http.get(url);
+  }
+  
+  //ES PARA OBTENER LOS PRODUCTOS
+  getproducto(){
+    const url3="http://localhost:3000/getproducto";
+    return this.http.get(url3);
+  }
 
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { GetusuariosService } from 'src/app/servicios/getusuarios.service';
-import { RegristrarService } from 'src/app/servicios/regristrar.service'
+import { RegristrarService } from 'src/app/servicios/regristrar.service';
 import { CategoriaInterface } from '../../models/user-interface';
 
 @Component({

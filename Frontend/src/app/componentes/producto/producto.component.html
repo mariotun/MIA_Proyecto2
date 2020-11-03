@@ -1,29 +1,41 @@
 
 
- <form>
+ <form  (submit)="nproducto()">
     <div class="form-row">
       <div class="form-group col-md-4">
-        <input type="text" name="correo" class="form-control" placeholder="Nombre" required autofocus>
+        <input type="text" [(ngModel)]="producto.nombre" name="nombre" class="form-control" placeholder="Nombre" required autofocus>
+        
       </div>
       <div class="form-group col-md-4">
-        <input type="text" name="correo" class="form-control" placeholder="Detalle" required autofocus>
+        <input type="text" [(ngModel)]="producto.detalle" name="detalle" class="form-control" placeholder="Detalle" required autofocus>
+        
       </div>
       <div class="form-group col-md-4">
-        <input type="text" name="correo" class="form-control" placeholder="Palabras Clave" required autofocus>
+        <input type="text" [(ngModel)]="producto.pclave" name="palabras_clave" class="form-control" placeholder="Palabras Clave" required autofocus>
+        
       </div>
       <div class="form-group col-md-4">
-        <input type="text" name="correo" class="form-control" placeholder="Precio Unitario" required autofocus>
+        <input type="number" min="1" [(ngModel)]="producto.precio" name="precio_unitario" class="form-control" placeholder="Precio Unitario" required autofocus>
+        
       </div>
       <div class="form-group col-md-4">
-        <input type="text" name="correo" class="form-control" placeholder="Categoria" required autofocus>
+        <!--<input type="number" [(ngModel)]="producto.idcategoria" name="categoria" class="form-control" placeholder="Categoria" required autofocus>-->
+        <select class="form-control" id="SelectCategoria">
+          <option *ngFor="let regcategoria of Categoria"><strong>Categoria:</strong> {{regcategoria.NOMBRECATEGORIA}} ------ <strong>ID:</strong> {{regcategoria.IDCATEGORIA}}</option>
+        </select>
+       
       </div>
 
       <div class="form-group col-md-4">
-        <button class="btn btn-primary text-align-center">Publicar Producto</button>  
+        <input type="number"  min="1" [(ngModel)]="producto.idcategoria" name="id_categoria" class="form-control" placeholder="Escriba el ID de la categoria" required autofocus>
+        
       </div>
-      
+ 
     </div>
 
+    <div class="text-center">
+      <button class="btn btn-primary text-align-center">Publicar Producto</button>  
+    </div> 
 
   </form>
 
@@ -37,127 +49,76 @@
 
          
 
-    <div class="card mx-3 my-4" style="width: 18rem;">
+    <div class="card mx-3 my-4" style="width: 18rem;" *ngFor="let prod of Producto">
 
         <img src="../../../assets/fondo.jpg" class="card-img-top" alt="...">
 
         <div class="card-body">
-          <h6 class="card-title">Precio:</h6>
-          <h6 class="card-title">Nombre:</h6>
+          <h6 class="card-title"><strong>Nombre:</strong> {{prod.NOMBRE}}</h6>
+          <h6 class="card-title"><strong>Precio:</strong> Q.{{prod.PRECIO}}</h6>
         </div>
 
         <div class="card-footer">
-            <button type="button" class="btn btn-primary mr-2">Agregar al carrito</button>
-            <button type="button" class="btn btn-secondary">Detalle</button>
+            <button type="submit"  class="btn btn-primary mr-2">Agregar al carrito</button>
+            <button type="submit" (click)="set_detalleproducto(prod.NOMBRE,prod.DETALLE,prod.PALABRASCLAVE,prod.PRECIO)" class="btn btn-secondary">Detalle</button>
         </div>
 
     </div>
 
      
-    <div class="card mx-3 my-4" style="width: 18rem;">
-
-        <img src="../../../assets/fondo.jpg" class="card-img-top" alt="...">
-
-        <div class="card-body">
-          <h6 class="card-title">Precio:</h6>
-          <h6 class="card-title">Nombre:</h6>
-        </div>
-
-        <div class="card-footer">
-            <button type="button" class="btn btn-primary mr-2">Agregar al carrito</button>
-            <button type="button" class="btn btn-secondary">Detalle</button>
-        </div>
-
-    </div>
-
-    <div class="card mx-3 my-4" style="width: 18rem;">
-
-        <img src="../../../assets/fondo.jpg" class="card-img-top" alt="...">
-
-        <div class="card-body">
-          <h6 class="card-title">Precio:</h6>
-          <h6 class="card-title">Nombre:</h6>
-        </div>
-
-        <div class="card-footer">
-            <button type="button" class="btn btn-primary mr-2">Agregar al carrito</button>
-            <button type="button" class="btn btn-secondary">Detalle</button>
-        </div>
-
-    </div>
-
-    <div class="card mx-3 my-4" style="width: 18rem;">
-
-        <img src="../../../assets/fondo.jpg" class="card-img-top" alt="...">
-
-        <div class="card-body">
-          <h6 class="card-title">Precio:</h6>
-          <h6 class="card-title">Nombre:</h6>
-        </div>
-
-        <div class="card-footer">
-            <button type="button" class="btn btn-primary mr-2">Agregar al carrito</button>
-            <button type="button" class="btn btn-secondary">Detalle</button>
-        </div>
-
-    </div>
-
-     
-    <div class="card mx-3 my-4" style="width: 18rem;">
-
-        <img src="../../../assets/fondo.jpg" class="card-img-top" alt="...">
-
-        <div class="card-body">
-          <h6 class="card-title">Precio:</h6>
-          <h6 class="card-title">Nombre:</h6>
-        </div>
-
-        <div class="card-footer">
-            <button type="button" class="btn btn-primary mr-2">Agregar al carrito</button>
-            <button type="button" class="btn btn-secondary">Detalle</button>
-        </div>
-
-    </div>
-
-    <div class="card mx-3 my-4" style="width: 18rem;">
-
-        <img src="../../../assets/fondo.jpg" class="card-img-top" alt="...">
-
-        <div class="card-body">
-          <h6 class="card-title">Precio:</h6>
-          <h6 class="card-title">Nombre:</h6>
-        </div>
-
-        <div class="card-footer">
-            <button type="button" class="btn btn-primary mr-2">Agregar al carrito</button>
-            <button type="button" class="btn btn-secondary">Detalle</button>
-        </div>
-
-    </div>
-
-    <div class="card mx-3 my-4" style="width: 18rem;">
-
-        <img src="../../../assets/fondo.jpg" class="card-img-top" alt="...">
-
-        <div class="card-body">
-          <h6 class="card-title">Precio:</h6>
-          <h6 class="card-title">Nombre:</h6>
-        </div>
-
-        <div class="card-footer">
-            <button type="button" class="btn btn-primary mr-2">Agregar al carrito</button>
-            <button type="button" class="btn btn-secondary">Detalle</button>
-        </div>
-
-    </div>
-  
-    
-    
-
 
     </div>
 </div>
 
+</div>
 
 
+
+<div class="container p-3">
+  <div class="card ">
+    <h5 class="card-header">CARRITO</h5>
+    <div class="card-body">
+      <h5 class="card-title">Special title treatment</h5>
+      <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+      <a href="#" class="btn btn-primary">Go somewhere</a>
+    </div>
+  </div>
+</div>
+
+  <div class="container p-3">
+  <div class="card ">
+    <h5 class="card-header">DETALLE PRODUCTO</h5>
+    <div class="card-body">
+      
+      <form>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="inputEmail4">Nombre Producto</label>
+            <input type="text" [(ngModel)]="producto.nombre" name="nombre" class="form-control"  required autofocus>
+          </div>
+          <div class="form-group col-md-6">
+            <label for="inputPassword4">Detalle Producto</label>
+            <input type="text" [(ngModel)]="producto.detalle" name="detalle" class="form-control"  required autofocus>
+          </div>
+          <div class="form-group col-md-6">
+            <label for="inputEmail4">Palabras clave producto</label>
+            <input type="text" [(ngModel)]="producto.pclave" name="claves" class="form-control"  required autofocus>
+          </div>
+          <div class="form-group col-md-6">
+            <label for="inputPassword4">Precio</label>
+            <input type="text" [(ngModel)]="producto.precio" name="precio" class="form-control"  required autofocus>
+          </div>
+          
+        </div>
+
+        <div class="text-center">
+        <button class="btn btn-primary text-align-center">Me gusta</button>  
+      </div> 
+
+      </form>
+
+
+
+    </div>
+  </div>
 </div>

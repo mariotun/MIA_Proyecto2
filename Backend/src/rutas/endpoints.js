@@ -109,6 +109,43 @@ router.post('/signup', async (req, res) =>{
 
 })
 
+//*********************************************GET_UNICO_USUARIO****************************************************************************
+router.get('/getunicousuario', async (req,res)=>{
+
+    const { CORREO } = req.body;
+
+    consulta="select *from usuario where CORREO=:CORREO"
+
+   
+    let result = await BD.Open(consulta, [CORREO], false);
+    Productos = [];
+
+    //res.json(result.rows);
+    //console.log(result.rows);
+
+    result.rows.map(user => {
+        let productoSchema = {
+            "IDCLIENTE": user[0],
+            "NOMBRE": user[1],
+            "APELLIDO": user[2],
+            "CORREO": user[3],
+            "CONTRASENA": user[4],
+            "CCONTRASENA": user[5],
+            "FECHANACIMIENTO": user[6],
+            "PAIS": user[7],
+            "CREDITO": user[8],
+            "FOTOGRAFIA": user[9],
+            "TIPOUSUARIO": user[10]
+            
+        }
+
+        Productos.push(productoSchema);
+    })
+
+    res.json(Productos);
+    //res,json(user);
+
+})
 
 //**********************************************UPDATE_USER*******************************************************************
 router.put('/updateuser',async(req, res) =>{
@@ -303,23 +340,26 @@ router.post('/crearproducto', async (req, res) =>{
 
     var respuesta=await BD.Open(consulta, [ IDPRODUCTO, NOMBRE, DETALLE, PALABRASCLAVE,PRECIO, MEGUSTA, NOMEGUSTA, IDCATEGORIA ], true);
 
-    /*res.status(200).json({
-        "IDCLIENTE": IDCLIENTE,
-        "NOMBRE": NOMBRE,
-        "APELLIDO": APELLIDO,
-        "CORREO": CORREO,
-        "CONTRASENA": CONTRASENA,
-        "CCONTRASENA": CCONTRASENA,
-        "FECHANACIMIENTO": FECHANACIMIENTO,
-        "PAIS": PAIS,
-        "CREDITO": CREDITO,
-        "FOTOGRAFIA": FOTOGRAFIA,
-        "TIPOUSUARIO": TIPOUSUARIO
-    })*/
+    
+    consulta="select *from producto"
+    let result = await BD.Open(consulta, [], false);
+    Productos = [];
+    result.rows.map(producto => {
+        let productoSchema = {
+            "IDPRODUCTO": producto [0],
+            "NOMBRE": producto [1],
+            "DETALLE": producto [2],
+            "PALABRASCLAVE": producto [3],
+            "PRECIO": producto [4],
+            "MEGUSTA": producto [5],
+            "NOMEGUSTA": producto [6],
+            "IDCATEGORIA": producto [7]
+        }
+        Productos.push(productoSchema);
+    })
+    res.status(200).json(Productos);
 
-    res.json({
-        status:"ok",
-    });
+
     
     }
 
@@ -367,6 +407,33 @@ router.get('/getproducto', async (req,res)=>{
 
 })
 
+//********************************************************GET_ID-CATEGORIA*******************************************************************
+router.get('/getidcategoria', async (req,res)=>{
+
+    const { NOMBRECATEGORIA } = req.body;
+
+    consulta="select cate.IDCATEGORIA from categoria cate where NOMBRECATEGORIA=:NOMBRECATEGORIA"
+
+   
+    let result = await BD.Open(consulta, [NOMBRECATEGORIA], false);
+    Productos = [];
+
+    //res.json(result.rows);
+    //console.log(result.rows);
+
+    result.rows.map(producto => {
+        let productoSchema = {
+            "IDPRODUCTO": producto [0],
+            
+        }
+
+        Productos.push(productoSchema);
+    })
+
+    res.json(Productos);
+    //res,json(user);
+
+})
 
 //*************************************************CARRITO*******************************************************************
 router.post('/carrito', async (req, res) =>{

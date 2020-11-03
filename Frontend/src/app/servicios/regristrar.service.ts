@@ -44,8 +44,51 @@ registrar_usuario(nombre:string,apellido:string,email:string,nacimiento:string,p
  }
 
 
+ //ES PARA ACTUALIZAR LOS DATOS DEL USUARIO***************************************************************************
+ actualizar_usuario(id:number,nombre:string,apellido:string,email:string,nacimiento:string,pais:string,password:string,confpasword:string,credito:number) {
+  const url = "http://localhost:3000/updateuser";
+
+  return this.http.put(
+    url,
+    {
+      "IDCLIENTE":id,
+      "NOMBRE": nombre,
+      "APELLIDO": apellido,
+      "CORREO": email,
+      "CONTRASENA": password,
+      "CCONTRASENA": confpasword,
+      "FECHANACIMIENTO": nacimiento,
+      "PAIS": pais,
+      "CREDITO": credito,
+      "FOTOGRAFIA": "/home/fotos",
+      "TIPOUSUARIO": "cliente"
+
+    },
+    { headers: this.headers }
+  ).pipe(map(data => data));
+}
+
+
  //ES PARA REGISTRAR LOS PRODUCTOS **********************************************************************************
-registrar_producto(){
+registrar_producto(nombre:string,detalle:string,pclave:string,precio:number,mg:string,nmg:string,idcategoria:number){
+
+  const url3="http://localhost:3000/crearproducto";
+
+  return this.http.post(
+    url3,
+    { 
+      "IDPRODUCTO": 17,
+      "NOMBRE": nombre,
+      "DETALLE": detalle,
+      "PALABRASCLAVE": pclave,
+      "PRECIO": precio,
+      "MEGUSTA": mg,
+      "NOMEGUSTA": nmg,
+      "IDCATEGORIA": idcategoria
+      
+    },
+    { headers: this.headers }
+  ).pipe(map(data => data));
 
 }
 

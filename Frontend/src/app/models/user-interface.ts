@@ -18,3 +18,16 @@ export interface CategoriaInterface{
     IDCATEGORIA:number,
     NOMBRECATEGORIA: string
 }
+
+export interface ProductoInterface{
+
+    IDPRODUCTO: number,
+    NOMBRE: string,
+    DETALLE: string,
+    PALABRASCLAVE: string,
+    PRECIO: number,
+    MEGUSTA: string,
+    NOMEGUSTA: string,
+    IDCATEGORIA: number
+
+}
