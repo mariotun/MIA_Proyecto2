@@ -143,14 +143,14 @@ router.post('/signup', async (req, res) =>{
 })
 
 //*********************************************GET_UNICO_USUARIO****************************************************************************
-router.get('/getunicousuario', async (req,res)=>{
+router.get('/getunicousuario/:IDCLIENTE', async (req,res)=>{
 
-    const { CORREO } = req.body;
+    const { IDCLIENTE } = req.params;
 
-    consulta="select *from usuario where CORREO=:CORREO"
+    consulta="select *from usuario where IDCLIENTE=:IDCLIENTE"
 
    
-    let result = await BD.Open(consulta, [CORREO], false);
+    let result = await BD.Open(consulta, [IDCLIENTE], false);
     Productos = [];
 
     //res.json(result.rows);

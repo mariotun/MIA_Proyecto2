@@ -20,6 +20,14 @@ export class GetusuariosService {
   })
 
 
+  //ES PARA OBTENER UN UNICO USUARIO
+  getoneuser(idcliente){
+    const url4="http://localhost:3000/getunicousuario/"+idcliente;
+
+   return this.http.get(url4)
+
+  }
+
   //ES PARA OBTENER LOS USUARIOS
   getuser(){
     const url="http://localhost:3000/GetUsers";
