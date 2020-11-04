@@ -12,6 +12,7 @@ import { ProductoComponent} from './componentes/producto/producto.component'
 import { AdminComponent } from './componentes/admin/admin.component'
 import { CategoriaComponent } from './componentes/categoria/categoria.component'
 
+import { AuthGuard } from './guards/auth.guard' //verifica si un usuario esta logeado o no
 
 const routes: Routes = [
 
@@ -34,11 +35,13 @@ const routes: Routes = [
   {
     path:'getuser',
     component:GetuserComponent
+    
 
   },
   {
     path:'usuario',
-    component:UsuarioComponent
+    component:UsuarioComponent,
+    canActivate:[AuthGuard]//es para proteger la ruta (se tiene que estas logeado para acceder a esa ruta)
 
   },
   {
@@ -48,7 +51,8 @@ const routes: Routes = [
   },
   {
     path:'administrador',
-    component: AdminComponent
+    component: AdminComponent,
+    canActivate:[AuthGuard]
 
   },
   {

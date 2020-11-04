@@ -15,6 +15,11 @@ import { ProductoComponent } from './componentes/producto/producto.component';
 import { AdminComponent } from './componentes/admin/admin.component';
 import { CategoriaComponent } from './componentes/categoria/categoria.component';
 
+import { GetusuariosService } from './servicios/getusuarios.service'
+import { from } from 'rxjs';
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,7 +38,7 @@ import { CategoriaComponent } from './componentes/categoria/categoria.component'
     FormsModule,
     HttpClientModule//se importo , no venia por defecto
   ],
-  providers: [],
+  providers: [ GetusuariosService ],//se puso eso y se importo 
   bootstrap: [AppComponent]
 })
 export class AppModule { }

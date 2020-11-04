@@ -5,6 +5,8 @@ const BD = require('../configuracion/configurardb');
 const validar=require('./validaciones');
 
 
+
+
 //*************************************************GET_USER*********************************************************************
 router.get('/GetUsers', async (req,res)=>{
 
@@ -41,10 +43,41 @@ router.get('/GetUsers', async (req,res)=>{
 
 
 //**************************************************SIGN_IN********************************************************************
-router.get('/signin',async() =>{
+router.post('/signin',async(req,res) =>{
 
+    const { CORREO, CONTRASENA } = req.body;
 
+    consulta = "select IDCLIENTE,NOMBRE,CORREO,CONTRASENA from usuario where CORREO=:CORREO and CONTRASENA=:CONTRASENA"; 
 
+    let result = await BD.Open(consulta,[ CORREO, CONTRASENA ],false);
+
+    console.log(result.rows);
+
+    if ( result.rows.length > 0 ){
+
+        res.status(200).json(
+            {
+                msg:"true",
+                DataUser:{
+                    "IDCLIENTE":result.rows[0][0],
+                    "NOMBRE":result.rows[0][1],
+                    "CORREO":result.rows[0][2],
+                    "CONTRASENA":result.rows[0][3]
+
+                }
+            }
+            
+            );
+    }else{
+
+        res.status(201).json(
+            {
+                msg:"false"
+            }
+            
+            );
+    }
+    
 })
 
 
