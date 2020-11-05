@@ -22,7 +22,9 @@ export class UsuarioComponent implements OnInit {
     paisu:"",
     passwordu:"",
     confpasswordu:"",
-    credito:null
+    credito:null,
+    tipo:"",
+    foto:""
     
   }
 
@@ -39,7 +41,7 @@ export class UsuarioComponent implements OnInit {
 
  
   updateusuario() {
-    this.crearservice_updateuser.actualizar_usuario(this.user.idu,this.user.nombreu,this.user.apellidou,this.user.email,this.user.nacimientou,this.user.paisu,this.user.passwordu,this.user.confpasswordu,this.user.credito)
+    this.crearservice_updateuser.actualizar_usuario(this.user.idu,this.user.nombreu,this.user.apellidou,this.user.email,this.user.passwordu,this.user.confpasswordu,this.user.nacimientou,this.user.paisu,this.user.credito,this.user.foto,this.user.tipo)
     .subscribe(
       (res: UserInterface[]) => {
         this.Usuarios= res;
@@ -68,7 +70,8 @@ usuario_unico(idcliente){
   
 }
 
-colocar_datos(nombre,apellido,correo,contrasena,ccontrasena,fecha,pais,credito){
+colocar_datos(id,nombre,apellido,correo,contrasena,ccontrasena,fecha,pais,credito,foto,tipo){
+  this.user.idu=id;
   this.user.nombreu=nombre;
   this.user.apellidou=apellido;
   this.user.email=correo;
@@ -77,6 +80,8 @@ colocar_datos(nombre,apellido,correo,contrasena,ccontrasena,fecha,pais,credito){
   this.user.nacimientou=fecha;
   this.user.paisu=pais;
   this.user.credito=credito;
+  this.user.foto=foto;
+  this.user.tipo=tipo;
 }
 
 

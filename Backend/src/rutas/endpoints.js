@@ -195,7 +195,7 @@ router.put('/updateuser',async(req, res) =>{
 
         }else{
             //sql = "update person set username=:username, firstname=:firstname, lastname=:lastname where codu=:codu";
-        const { IDCLIENTE, NOMBRE, APELLIDO, CORREO,CONTRASENA, CCONTRASENA, FECHANACIMIENTO, PAIS, CREDITO ,FOTOGRAFIA ,TIPOUSUARIO } = req.body;
+        const { IDCLIENTE, NOMBRE, APELLIDO, CORREO,CONTRASENA, CCONTRASENA, FECHANACIMIENTO, PAIS, CREDITO ,FOTOGRAFIA,TIPOUSUARIO } = req.body;
         
         consulta = "update usuario set NOMBRE=:NOMBRE, APELLIDO=:APELLIDO, CORREO=:CORREO,CONTRASENA=:CONTRASENA ,CCONTRASENA=:CCONTRASENA,\
         FECHANACIMIENTO=to_date(:FECHANACIMIENTO,'DD-MM-YYYY'), PAIS=:PAIS, CREDITO=:CREDITO, FOTOGRAFIA=:FOTOGRAFIA, TIPOUSUARIO=:TIPOUSUARIO where IDCLIENTE=:IDCLIENTE";
@@ -204,7 +204,7 @@ router.put('/updateuser',async(req, res) =>{
     
 
         //const { IDCLIENTE }=req.body;
-        consulta2="select *from usuario where IDCLIENTE=:IDCLIENTE"
+    /*   consulta2="select *from usuario where IDCLIENTE=:IDCLIENTE"
    
         let result2 = await BD.Open(consulta2, [IDCLIENTE], false);
         Users = [];
@@ -230,9 +230,9 @@ router.put('/updateuser',async(req, res) =>{
         Users.push(userSchema);
     })
 
-         res.json(Users);
+         res.json(Users);*/
 
-        /*res.status(200).json({
+       /* res.status(200).json({
             "IDCLIENTE": IDCLIENTE,
             "NOMBRE": NOMBRE,
             "APELLIDO": APELLIDO,
@@ -246,10 +246,10 @@ router.put('/updateuser',async(req, res) =>{
             "TIPOUSUARIO": TIPOUSUARIO
                     })*/
     
-        /*res.status(200).json({
+        res.status(200).json({
             status:"ok",
             message:"Datos modificados correctamente."
-        });*/
+        });
         
         }
     
@@ -490,6 +490,23 @@ router.post('/carrito', async (req, res) =>{
 
     var respuesta=await BD.Open(consulta, [ IDCARRITO, CANTIDAD, PRECIOUNITARIO, SUBTOTAL,PRODUCTO, IDCLIENTE,COMPRO ], true);
 
+
+    consulta2="select *from carrito where IDCLIENTE=:IDCLIENTE"
+    let result = await BD.Open(consulta2, [], false);
+    Carritos = [];
+    result.rows.map(carrito => {
+        let carritoSchema = {
+            "IDCARRITO": carrito [0],
+            "CANTIDAD": carrito[1],
+            "PRECIOUNITARIO": carrito [2],
+            "SUBTOTAL": carrito [3],
+            "PRODUCTO": carrito [4],
+            "IDCLIENTE": carrito [5],
+            "COMPRO": carrito [6]
+        }
+        Carritos.push(carritoSchema);
+    })
+    res.json(Carritos);
     /*res.status(200).json({
         "IDCLIENTE": IDCLIENTE,
         "NOMBRE": NOMBRE,
@@ -504,9 +521,9 @@ router.post('/carrito', async (req, res) =>{
         "TIPOUSUARIO": TIPOUSUARIO
     })*/
 
-    res.json({
+   /* res.json({
         status:"ok",
-    });
+    });*/
     
     }
 
@@ -525,11 +542,13 @@ router.post('/carrito', async (req, res) =>{
 //********************************************UPDATE_CARRITO********************************************************************
 
 //********************************************GET_CARRITO***********************************************************************
-router.get('/getcarrito', async (req,res)=>{
+router.get('/getcarrito/:IDCLIENTE', async (req,res)=>{
 
-    consulta="select *from carrito"
+    const { IDCLIENTE } = req.params;
+
+    consulta="select *from carrito where IDCLIENTE=:IDCLIENTE"
    
-    let result = await BD.Open(consulta, [], false);
+    let result = await BD.Open(consulta, [IDCLIENTE], false);
     Carritos = [];
 
     //res.json(result.rows);

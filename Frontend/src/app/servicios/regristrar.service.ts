@@ -45,7 +45,7 @@ registrar_usuario(nombre:string,apellido:string,email:string,nacimiento:string,p
 
 
  //ES PARA ACTUALIZAR LOS DATOS DEL USUARIO***************************************************************************
- actualizar_usuario(id:number,nombre:string,apellido:string,email:string,nacimiento:string,pais:string,password:string,confpasword:string,credito:number) {
+ actualizar_usuario(id:number,nombre:string,apellido:string,email:string,password:string,confpasword:string,nacimiento:string,pais:string,credito:number,foto:string,tipo:string) {
   const url = "http://localhost:3000/updateuser";
 
   return this.http.put(
@@ -60,8 +60,8 @@ registrar_usuario(nombre:string,apellido:string,email:string,nacimiento:string,p
       "FECHANACIMIENTO": nacimiento,
       "PAIS": pais,
       "CREDITO": credito,
-      "FOTOGRAFIA": "/home/fotos",
-      "TIPOUSUARIO": "cliente"
+      "FOTOGRAFIA": foto,
+      "TIPOUSUARIO": tipo
 
     },
     { headers: this.headers }
@@ -108,6 +108,29 @@ registrar_categoria(nombrecategoria:string){
     { headers: this.headers }
   ).pipe(map(data => data));
 
+
+
+}
+
+//ES PARA REGISTRAR LOS PRODUCTOS DE UN CARRITO **********************************************************************
+regsitrar_carrito(idcarrito:number,cantidad:number,precio:number,subtotral:number,producto:string,idcliente:number,compro:string){
+
+  const url6="http://localhost:3000/carrito";
+
+   return this.http.post(
+    url6,
+    { 
+      "IDCARRITO": idcarrito,
+      "CANTIDAD": cantidad,
+      "PRECIOUNITARIO": precio,
+      "SUBTOTAL": subtotral,
+      "PRODUCTO": producto,
+      "IDCLIENTE": idcliente,
+      "COMPRO": compro
+      
+    },
+    { headers: this.headers }
+  ).pipe(map(data => data));
 
 
 }

@@ -71,7 +71,7 @@
               </div>
               <div class="form-group col-md-6">
                 <h6>{{usu.FECHANACIMIENTO}}</h6>
-                <input type="date" [(ngModel)]="user.nacimientou" name="nacimiento" class="form-control" placeholder="Fecha Nacimiento" required autofocus>
+                <input type="text" [(ngModel)]="user.nacimientou" name="nacimiento" class="form-control" placeholder="Fecha Nacimiento" required autofocus>
               </div>
               <div class="form-group col-md-6">
                 <h6>{{usu.CREDITO}}</h6>
@@ -79,19 +79,18 @@
               </div>
 
 
-              <div class="text-center">
-
-                <button class="btn btn-primary text-align-center"  type="submit" (click)="colocar_datos(usu.NOMBRE,usu.APELLIDO,usu.CORREO,usu.CONTRASENA,usu.CCONTRASENA,usu.FECHA,usu.PAIS,usu.CREDITO)">Colocar Datos</button>  
-    
-                <button class="btn btn-primary text-align-center" >Modificar</button> 
-    
-            </div> 
+              <div class="form-group col-md-6 text-center">
+               
+                <button class="btn btn-primary text-align-center mr-3"  type="submit" (click)="colocar_datos(usu.IDCLIENTE,usu.NOMBRE,usu.APELLIDO,usu.CORREO,usu.CONTRASENA,usu.CCONTRASENA,usu.FECHA,usu.PAIS,usu.CREDITO,usu.FOTOGRAFIA,usu.TIPOUSUARIO)">Colocar Datos</button>  
+              </div> 
+               
+              <div class="form-group col-md-6 text-center">
+               <button class="btn btn-primary text-align-center"  type="submit" (click)="updateusuario()" >Actualizar Datos</button> 
+                  
+              </div> 
 
 
             </div>
-
-
-            
 
 
           </form>

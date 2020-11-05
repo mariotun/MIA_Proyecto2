@@ -59,8 +59,16 @@
         </div>
 
         <div class="card-footer">
-            <button type="submit"  class="btn btn-primary mr-2">Agregar al carrito</button>
+           <!-- <button type="submit"  class="btn btn-primary mr-2">Agregar al carrito</button> -->
             <button type="submit" (click)="set_detalleproducto(prod.NOMBRE,prod.DETALLE,prod.PALABRASCLAVE,prod.PRECIO)" class="btn btn-secondary">Detalle</button>
+
+            <select class="form-control" id="SelectCategoria">
+              <option >es un buen producto </option>
+              <option >tiene mejores precios</option>
+              <option >la calidad en muy buena es un buen producto es un buen producto es un buen producto</option>
+              <option >tiene garantia de 6 meses</option>
+            </select>
+
         </div>
 
     </div>
@@ -78,9 +86,80 @@
   <div class="card ">
     <h5 class="card-header">CARRITO</h5>
     <div class="card-body">
-      <h5 class="card-title">Special title treatment</h5>
-      <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-      <a href="#" class="btn btn-primary">Go somewhere</a>
+      
+
+
+      <form  >
+
+        <div class="form-row">
+          <div class="form-group col-md-3">
+            <input type="text" [(ngModel)]="producto.nombre" name="nombre" class="form-control" placeholder="Nombre" required autofocus>
+          </div>
+          <div class="form-group col-md-3">
+            <input type="text" [(ngModel)]="producto.detalle" name="detalle" class="form-control" placeholder="Detalle" required autofocus>
+          </div>
+          <div class="form-group col-md-3">
+            <input type="text" [(ngModel)]="producto.pclave" name="palabras_clave" class="form-control" placeholder="Palabras Clave" required autofocus>
+          </div>
+          <div class="form-group col-md-3">
+            <input type="number" min="1" [(ngModel)]="producto.precio" name="precio_unitario" class="form-control" placeholder="Precio Unitario" required autofocus>
+          </div>
+        </div> 
+
+        <div class="form-row">
+          <div class="form-group col-md-3">
+            <input type="text" [(ngModel)]="producto.nombre" name="nombre" class="form-control" placeholder="Nombre" required autofocus>
+          </div>
+          <div class="form-group col-md-3">
+            <input type="text" [(ngModel)]="producto.detalle" name="detalle" class="form-control" placeholder="Detalle" required autofocus>
+          </div>
+          <div class="form-group col-md-3">
+            <input type="text" [(ngModel)]="producto.pclave" name="palabras_clave" class="form-control" placeholder="Palabras Clave" required autofocus>
+          </div>
+          <div class="form-group col-md-3">
+            <input type="number" min="1" [(ngModel)]="producto.precio" name="precio_unitario" class="form-control" placeholder="Precio Unitario" required autofocus>
+          </div>
+        </div> 
+
+        <div class="form-row">
+          <div class="form-group col-md-3">
+            <input type="text" [(ngModel)]="producto.nombre" name="nombre" class="form-control" placeholder="Nombre" required autofocus>
+          </div>
+          <div class="form-group col-md-3">
+            <input type="text" [(ngModel)]="producto.detalle" name="detalle" class="form-control" placeholder="Detalle" required autofocus>
+          </div>
+          <div class="form-group col-md-3">
+            <input type="text" [(ngModel)]="producto.pclave" name="palabras_clave" class="form-control" placeholder="Palabras Clave" required autofocus>
+          </div>
+          <div class="form-group col-md-3">
+            <input type="number" min="1" [(ngModel)]="producto.precio" name="precio_unitario" class="form-control" placeholder="Precio Unitario" required autofocus>
+          </div>
+        </div> 
+
+        <div class="form-row">
+          <div class="form-group col-md-3">
+            <input type="text" [(ngModel)]="producto.nombre" name="nombre" class="form-control" placeholder="Nombre" required autofocus>
+          </div>
+          <div class="form-group col-md-3">
+            <input type="text" [(ngModel)]="producto.detalle" name="detalle" class="form-control" placeholder="Detalle" required autofocus>
+          </div>
+          <div class="form-group col-md-3">
+            <input type="text" [(ngModel)]="producto.pclave" name="palabras_clave" class="form-control" placeholder="Palabras Clave" required autofocus>
+          </div>
+          <div class="form-group col-md-3">
+            <input type="number" min="1" [(ngModel)]="producto.precio" name="precio_unitario" class="form-control" placeholder="Precio Unitario" required autofocus>
+          </div>
+        </div> 
+
+
+
+      </form>
+
+
+
+
+
+
     </div>
   </div>
 </div>
@@ -112,8 +191,21 @@
         </div>
 
         <div class="text-center">
-        <button class="btn btn-primary text-align-center">Me gusta</button>  
+          <button type="submit"  class="btn btn-primary mr-2">Agregar al carrito</button>
+          <button class="btn btn-success text-align-center mr-2">Me gusta</button>  
+          <button class="btn btn-warning text-align-center">No Me gusta</button> 
       </div> 
+
+    
+
+      <div class="form-group col-md-6">
+        <label for="inputEmail4">Escribir Comentario</label>
+        <input type="text" [(ngModel)]="producto.pclave" name="claves" class="form-control"  required autofocus>
+
+        <button class="btn btn-primary text-align-center mt-2">Comentar</button>  
+      </div>
+
+      
 
       </form>
 
