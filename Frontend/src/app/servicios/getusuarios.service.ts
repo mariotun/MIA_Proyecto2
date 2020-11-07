@@ -28,6 +28,12 @@ export class GetusuariosService {
 
   }
 
+  //ES PARA OBTENER LOS PRODUCTOS DEL CARRITO DE UN CLIENTE
+  getcarritousuario(idcliente){
+    const url5="http://localhost:3000/getcarrito/"+idcliente;
+    return this.http.get(url5);
+  }
+
   //ES PARA OBTENER LOS USUARIOS
   getuser(){
     const url="http://localhost:3000/GetUsers";
@@ -96,5 +102,7 @@ get_currentuser(){
     localStorage.removeItem("usuariologeado");
     this.router.navigate(['/signin']);
   }
+
+
 
 }

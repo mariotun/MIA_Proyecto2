@@ -26,7 +26,7 @@ registrar_usuario(nombre:string,apellido:string,email:string,nacimiento:string,p
    return this.http.post(
     url,
     { 
-      "IDCLIENTE":15,
+      "IDCLIENTE":"",
       "NOMBRE": nombre,
       "APELLIDO": apellido,
       "CORREO": email,
@@ -77,7 +77,7 @@ registrar_producto(nombre:string,detalle:string,pclave:string,precio:number,mg:s
   return this.http.post(
     url3,
     { 
-      "IDPRODUCTO": 17,
+      "IDPRODUCTO": 230,
       "NOMBRE": nombre,
       "DETALLE": detalle,
       "PALABRASCLAVE": pclave,
@@ -89,6 +89,29 @@ registrar_producto(nombre:string,detalle:string,pclave:string,precio:number,mg:s
     },
     { headers: this.headers }
   ).pipe(map(data => data));
+
+}
+
+
+//ES PARA REGISTRAR LA PUBLICACION DE UN PRODUCTO
+registrar_publicacion(cantidadpu:number,idcliente:number){
+
+  const url4="http://localhost:3000/publicacion";
+  var f = new Date();
+
+  return this.http.post(
+    url4,
+    { 
+      "IDPUBLICACION": 3,
+      "FECHAPUBLICACION": f.getDate() + "/" + (f.getMonth() +1) + "/" + f.getFullYear(),
+      "CANTIDADPUBLICACION": cantidadpu,
+      "ESTADO": "desbloqueado",
+      "IDCLIENTE": idcliente
+      
+    },
+    { headers: this.headers }
+  ).pipe(map(data => data));
+
 
 }
 
@@ -113,20 +136,21 @@ registrar_categoria(nombrecategoria:string){
 }
 
 //ES PARA REGISTRAR LOS PRODUCTOS DE UN CARRITO **********************************************************************
-regsitrar_carrito(idcarrito:number,cantidad:number,precio:number,subtotral:number,producto:string,idcliente:number,compro:string){
+regsitrar_carrito(idcarrito:number,cantidad:number,precio:number,subtotral:number,producto:string,idcliente:number){
 
   const url6="http://localhost:3000/carrito";
+  
 
    return this.http.post(
     url6,
     { 
-      "IDCARRITO": idcarrito,
+      "IDCARRITO": 102,
       "CANTIDAD": cantidad,
       "PRECIOUNITARIO": precio,
       "SUBTOTAL": subtotral,
       "PRODUCTO": producto,
       "IDCLIENTE": idcliente,
-      "COMPRO": compro
+      "COMPRO": "no"
       
     },
     { headers: this.headers }
@@ -137,7 +161,20 @@ regsitrar_carrito(idcarrito:number,cantidad:number,precio:number,subtotral:numbe
 
 
  //ES PARA REGISTRAR LAS COMPRAS **********************************************************************************
-registrar_compra(){
+registrar_compra(idcarrito:number){
+
+const url7="http://localhost:3000/compra";
+  
+
+   return this.http.post(
+    url7,
+    { 
+      "IDCOMPRA":3,
+      "IDCARRITO": idcarrito
+      
+    },
+    { headers: this.headers }
+  ).pipe(map(data => data));
 
 
 }
@@ -149,6 +186,27 @@ registrar_compra(){
   
  }
 
+
+ //ES PARA REGISTRAR LA BITACORA*************************************************************************************
+
+registrar_bitacora(descripcion:string,correo:string){
+
+  const url8="http://localhost:3000/bitacora";
+  var f = new Date();
+
+   return this.http.post(
+    url8,
+    { 
+      "IDBITACORA": 1,
+      "DESCRIPCION": descripcion,
+      "FECHAACCION": f.getDate() + "/" + (f.getMonth() +1) + "/" + f.getFullYear(),
+      "CORREO": correo
+      
+    },
+    { headers: this.headers }
+  ).pipe(map(data => data));
+
+} 
 
 
 

@@ -11,7 +11,7 @@ import { GetusuariosService } from '../../servicios/getusuarios.service'
 })
 export class UsuarioComponent implements OnInit {
 
-  constructor(private crearservice_updateuser: RegristrarService,private cerrarsesion_services:GetusuariosService,private unicouser_services:GetusuariosService) { }
+  constructor(private authService: GetusuariosService,private crearservice_updateuser: RegristrarService,private cerrarsesion_services:GetusuariosService,private unicouser_services:GetusuariosService) { }
 
   user={//es un objeto
     idu:null,
@@ -29,10 +29,16 @@ export class UsuarioComponent implements OnInit {
   }
 
   Usuarios: UserInterface[] = [];
+  
+  
 
   ngOnInit(): void {
     
-    this.unicouser_services.getoneuser(30).subscribe((res: UserInterface[])=>{
+    let usuariolegeado=this.authService.get_currentuser()
+  //  console.log(usuariolegeado);
+   // console.log("-->",usuariolegeado.IDCLIENTE)
+    
+    this.unicouser_services.getoneuser(usuariolegeado.IDCLIENTE).subscribe((res: UserInterface[])=>{
       this.Usuarios=res
       console.log(this.Usuarios)
     })

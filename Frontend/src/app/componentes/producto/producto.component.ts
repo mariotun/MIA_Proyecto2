@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { GetusuariosService } from 'src/app/servicios/getusuarios.service';
 import { RegristrarService } from 'src/app/servicios/regristrar.service';
-import { ProductoInterface } from '../../models/user-interface';
-import { CategoriaInterface } from '../../models/user-interface';
+import { CompraINterface, ProductoInterface, PublicacionInterface } from '../../models/user-interface';
+import { CategoriaInterface,CarritoInterface } from '../../models/user-interface';
+
 
 @Component({
   selector: 'app-producto',
@@ -10,6 +11,8 @@ import { CategoriaInterface } from '../../models/user-interface';
   styleUrls: ['./producto.component.css']
 })
 export class ProductoComponent implements OnInit {
+
+  
 
   producto={
     
@@ -26,11 +29,33 @@ export class ProductoComponent implements OnInit {
     nombrecategoria:""
   }
 
+  carrito={
+    idcarrito:null,
+    cantidad:null,
+    preciounitario:null,
+    subtotal:null,
+    producto:"",
+    idcliente:null,
+    compro:""
+  }
 
-  constructor(private getservice_categoria: GetusuariosService,private getserice_producto: GetusuariosService,private crearservice_producto: RegristrarService) { }
+
+  publicacion={
+    idpublicacion: null,
+    fechapublicacion: "",
+    cantidadpu: null,
+    estado: "",
+    idcliente: null
+
+  }
+
+
+
+  constructor(private authService: GetusuariosService,private getservice_categoria: GetusuariosService,private getserice_producto: GetusuariosService,private crearservice_producto: RegristrarService,private carritoservice_producto: RegristrarService) { }
 
   ngOnInit(): void {
 
+    
     this.getserice_producto.getproducto().subscribe((res:ProductoInterface[])=>{//subscribe escucha si el servidor le va a decir algo 
       this.Producto=res;
     
@@ -43,10 +68,19 @@ export class ProductoComponent implements OnInit {
 
   }
 
+  
 
   Producto: ProductoInterface[] = [];
 
   Categoria: CategoriaInterface[] = [];
+
+  Carrito: CarritoInterface[] = [];
+
+  Compra : CompraINterface[] = [];
+
+  Publicacion : PublicacionInterface [] = [];
+
+  
 
   nproducto(){
     console.log("estoy dentro de nproducto")
@@ -56,7 +90,7 @@ export class ProductoComponent implements OnInit {
       .subscribe(
         (res: ProductoInterface[]) => {
           this.Producto= res;
-          
+          this.npublicacionp();
         },
         err =>{
           console.log(err);
@@ -65,6 +99,79 @@ export class ProductoComponent implements OnInit {
 
   }
 
+  npublicacionp(){
+    let usuariolegeado=this.authService.get_currentuser();
+
+    this.crearservice_producto.registrar_publicacion(this.publicacion.cantidadpu=1,this.publicacion.idcliente=usuariolegeado.IDCLIENTE)  
+      .subscribe(
+        (res: PublicacionInterface[]) => {
+          this.Publicacion= res;
+          
+        },
+        err =>{
+          console.log(err);
+        }
+      )
+
+
+  }
+
+
+  ncarrito(){
+    let usuariolegeado=this.authService.get_currentuser();
+
+    this.carritoservice_producto.regsitrar_carrito(this.carrito.idcarrito,this.carrito.cantidad,this.carrito.preciounitario=this.producto.precio,this.carrito.subtotal=this.producto.precio*this.carrito.cantidad,this.carrito.producto=this.producto.nombre,this.carrito.idcliente=usuariolegeado.IDCLIENTE)
+    .subscribe(
+      (res: CarritoInterface[]) => {
+        this.Carrito= res;
+        
+      },
+      err =>{
+        console.log(err);
+      }
+    )
+
+    
+
+  }
+
+  mostrarcarrito(){
+
+    let usuariolegeado=this.authService.get_currentuser();
+
+    this.getserice_producto.getcarritousuario(usuariolegeado.IDCLIENTE)
+    .subscribe(
+      (res: CarritoInterface[]) => {
+        this.Carrito= res;
+        
+      },
+      err =>{
+        console.log(err);
+      }
+    )
+
+
+  }
+
+
+  comprarcarrito(idcarrito){
+
+    this.crearservice_producto.registrar_compra(idcarrito)
+    .subscribe(
+      (res: CompraINterface[]) => {
+        this.Compra= res;
+        
+      },
+      err =>{
+        console.log(err);
+      }
+    )
+
+
+  }
+
+
+  
 
   //ENVIAR DETALLE
   set_detalleproducto(nombre,detalle,pclaves,precio){

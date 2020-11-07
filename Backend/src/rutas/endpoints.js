@@ -491,22 +491,6 @@ router.post('/carrito', async (req, res) =>{
     var respuesta=await BD.Open(consulta, [ IDCARRITO, CANTIDAD, PRECIOUNITARIO, SUBTOTAL,PRODUCTO, IDCLIENTE,COMPRO ], true);
 
 
-    consulta2="select *from carrito where IDCLIENTE=:IDCLIENTE"
-    let result = await BD.Open(consulta2, [], false);
-    Carritos = [];
-    result.rows.map(carrito => {
-        let carritoSchema = {
-            "IDCARRITO": carrito [0],
-            "CANTIDAD": carrito[1],
-            "PRECIOUNITARIO": carrito [2],
-            "SUBTOTAL": carrito [3],
-            "PRODUCTO": carrito [4],
-            "IDCLIENTE": carrito [5],
-            "COMPRO": carrito [6]
-        }
-        Carritos.push(carritoSchema);
-    })
-    res.json(Carritos);
     /*res.status(200).json({
         "IDCLIENTE": IDCLIENTE,
         "NOMBRE": NOMBRE,
@@ -521,9 +505,9 @@ router.post('/carrito', async (req, res) =>{
         "TIPOUSUARIO": TIPOUSUARIO
     })*/
 
-   /* res.json({
+    res.json({
         status:"ok",
-    });*/
+    });
     
     }
 
