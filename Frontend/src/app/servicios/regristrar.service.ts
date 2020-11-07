@@ -26,7 +26,7 @@ registrar_usuario(nombre:string,apellido:string,email:string,nacimiento:string,p
    return this.http.post(
     url,
     { 
-      "IDCLIENTE":"",
+      "IDCLIENTE":null,
       "NOMBRE": nombre,
       "APELLIDO": apellido,
       "CORREO": email,
@@ -77,7 +77,7 @@ registrar_producto(nombre:string,detalle:string,pclave:string,precio:number,mg:s
   return this.http.post(
     url3,
     { 
-      "IDPRODUCTO": 230,
+      "IDPRODUCTO": null,
       "NOMBRE": nombre,
       "DETALLE": detalle,
       "PALABRASCLAVE": pclave,
@@ -102,7 +102,7 @@ registrar_publicacion(cantidadpu:number,idcliente:number){
   return this.http.post(
     url4,
     { 
-      "IDPUBLICACION": 3,
+      "IDPUBLICACION": null,
       "FECHAPUBLICACION": f.getDate() + "/" + (f.getMonth() +1) + "/" + f.getFullYear(),
       "CANTIDADPUBLICACION": cantidadpu,
       "ESTADO": "desbloqueado",
@@ -124,7 +124,7 @@ registrar_categoria(nombrecategoria:string){
    return this.http.post(
     url2,
     { 
-      "IDCATEGORIA": 13,
+      "IDCATEGORIA": null,
       "NOMBRECATEGORIA": nombrecategoria
       
     },
@@ -144,7 +144,7 @@ regsitrar_carrito(idcarrito:number,cantidad:number,precio:number,subtotral:numbe
    return this.http.post(
     url6,
     { 
-      "IDCARRITO": 102,
+      "IDCARRITO": null,
       "CANTIDAD": cantidad,
       "PRECIOUNITARIO": precio,
       "SUBTOTAL": subtotral,
@@ -169,7 +169,7 @@ const url7="http://localhost:3000/compra";
    return this.http.post(
     url7,
     { 
-      "IDCOMPRA":3,
+      "IDCOMPRA":null,
       "IDCARRITO": idcarrito
       
     },
@@ -197,7 +197,7 @@ registrar_bitacora(descripcion:string,correo:string){
    return this.http.post(
     url8,
     { 
-      "IDBITACORA": 1,
+      "IDBITACORA": null,
       "DESCRIPCION": descripcion,
       "FECHAACCION": f.getDate() + "/" + (f.getMonth() +1) + "/" + f.getFullYear(),
       "CORREO": correo

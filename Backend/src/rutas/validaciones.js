@@ -30,10 +30,11 @@ function validar_registro(data){
 
     const { IDCLIENTE, NOMBRE, APELLIDO, CORREO,CONTRASENA, CCONTRASENA, FECHANACIMIENTO, PAIS, CREDITO ,FOTOGRAFIA ,TIPOUSUARIO } = data;
 
-    if ( typeof IDCLIENTE !=="number"){
+    /*if ( typeof IDCLIENTE !=="number"){
         //throw new Error("El ID no es el correcto para ser registrado.");
         return "El ID no es el correcto para ser registrado.";
-    }else if ( typeof NOMBRE !== "string" || NOMBRE === "" ){
+    }else*/
+     if ( typeof NOMBRE !== "string" || NOMBRE === "" ){
         //throw new Error("El nombre no es valido para ser registrado.");
         return "El nombre no es valido para ser registrado.";
     }else if(typeof APELLIDO !== "string" || APELLIDO === "" ){

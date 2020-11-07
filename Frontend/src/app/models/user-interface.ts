@@ -94,3 +94,8 @@ export interface DenunciaInterface{
     CANTIDAD: number,
     IDPUBLICACION: number
 }
+
+export interface ChatInterface{
+    USER:string,
+    TEXT:string
+}

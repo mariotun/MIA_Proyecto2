@@ -4,6 +4,22 @@ const express = require('express');
 const cors = require('cors');
 const app = express();
 
+
+const serverHttp=require('http').Server(app)
+const io=require('socket.io')(serverHttp)//va a recibir como parametro la constantete serverHttp
+const myMessages=[];
+io.on('connection',function(socket){
+    socket.on('send-message',function(data){
+        myMessages.push(data)
+        socket.emit('text-event',myMessages)//solo envia el mensaje para el quien lo pidio
+        socket.broadcast.emit('text-event',myMessages)  
+    })
+})
+
+
+
+
+
 //imports
 const personRoutes = require('./rutas/endpoints');
 
@@ -32,6 +48,7 @@ app.use(personRoutes);
 
 
 //run
-app.listen(app.get('puerto'), () => {
+
+serverHttp.listen(app.get('puerto'), () => {
     console.log('Server on Port 3000')
 })

@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 //import { ConsoleReporter } from 'jasmine';
 import { RegristrarService } from 'src/app/servicios/regristrar.service';
-import { UserInterface } from '../../models/user-interface'
-import { GetusuariosService } from '../../servicios/getusuarios.service'
+import { UserInterface ,ChatInterface} from '../../models/user-interface'
+import { GetusuariosService } from '../../servicios/getusuarios.service';
+
+import { ActivatedRoute } from '@angular/router';//es para el chat
+import { WebsocketService } from '../../servicios/websocket.service'
 
 @Component({
   selector: 'app-usuario',
@@ -11,7 +14,22 @@ import { GetusuariosService } from '../../servicios/getusuarios.service'
 })
 export class UsuarioComponent implements OnInit {
 
-  constructor(private authService: GetusuariosService,private crearservice_updateuser: RegristrarService,private cerrarsesion_services:GetusuariosService,private unicouser_services:GetusuariosService) { }
+  constructor(private activated:ActivatedRoute,private webservice:WebsocketService,private authService: GetusuariosService,private crearservice_updateuser: RegristrarService,private cerrarsesion_services:GetusuariosService,private unicouser_services:GetusuariosService) { }
+
+  User={
+    name:""
+  }
+
+  userchat={
+    user:"",
+    text:""
+  }
+
+  myMessages;
+  eventName="send-message";
+
+
+
 
   user={//es un objeto
     idu:null,
@@ -30,19 +48,33 @@ export class UsuarioComponent implements OnInit {
 
   Usuarios: UserInterface[] = [];
   
+  //myMessages: ChatInterface[]=[];
   
 
   ngOnInit(): void {
+
+    const id=this.activated.snapshot.params.id;
+    this.userchat.user="mario";
+    this.webservice.listen('text-event').subscribe((data)=>{
+      this.myMessages=data;
+    })
+
     
     let usuariolegeado=this.authService.get_currentuser()
   //  console.log(usuariolegeado);
    // console.log("-->",usuariolegeado.IDCLIENTE)
-    
     this.unicouser_services.getoneuser(usuariolegeado.IDCLIENTE).subscribe((res: UserInterface[])=>{
       this.Usuarios=res
       console.log(this.Usuarios)
     })
 
+
+
+  }
+
+  myMessage(){
+    this.webservice.emit(this.eventName,this.userchat);
+   // this.userchat.text="";
   }
 
  
