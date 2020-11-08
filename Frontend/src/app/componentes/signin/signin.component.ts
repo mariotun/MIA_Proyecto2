@@ -4,6 +4,8 @@ import { UserInterface } from '../../models/user-interface'
 import { Router } from "@angular/router";
 import { from } from 'rxjs';
 
+//import { ProductoComponent } from '../producto/producto.component'
+
 
 @Component({
   selector: 'app-signin',
@@ -14,6 +16,8 @@ export class SigninComponent implements OnInit {
   
 
   constructor(public login_services:GetusuariosService,public router: Router) { }
+
+ // public pccomp:ProductoComponent;
 
   user={//es un objeto
     email:"",
@@ -37,11 +41,14 @@ export class SigninComponent implements OnInit {
         let DataUser: UserInterface = res['DataUser'];
         this.login_services.set_currentuser(DataUser);
         this.router.navigate(['/administrador']);
+        
+        
 
       }else{
         let DataUser: UserInterface = res['DataUser'];
         this.login_services.set_currentuser(DataUser);
         this.router.navigate(['/usuario']);
+        
 
       }
 

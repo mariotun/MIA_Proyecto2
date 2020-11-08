@@ -35,7 +35,7 @@ export class CategoriaComponent implements OnInit {
       .subscribe(
         (res: CategoriaInterface[]) => {
           this.Categoria= res;
-          
+          this.crearcategoria.registrar_bitacora("Se acaba de crear la categoria "+this.categoria.nombrecategoria,"admin123@gmail.com");
         },
         err =>{
           console.log(err);

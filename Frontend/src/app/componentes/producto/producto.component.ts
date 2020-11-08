@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { GetusuariosService } from 'src/app/servicios/getusuarios.service';
 import { RegristrarService } from 'src/app/servicios/regristrar.service';
 import { ComentarioInterface, CompraINterface, ProductoInterface, PublicacionInterface } from '../../models/user-interface';
-import { CategoriaInterface,CarritoInterface } from '../../models/user-interface';
+import { CategoriaInterface,CarritoInterface,BitacoraInterface } from '../../models/user-interface';
 
 
 @Component({
@@ -56,6 +56,13 @@ export class ProductoComponent implements OnInit {
     idproducto: null
   }
 
+  bitacora={
+    idbitacora:null,
+    descripcion:"",
+    fecha:"",
+    correo:""
+  }
+
 
 
   constructor(private authService: GetusuariosService,private getservice_categoria: GetusuariosService,private getserice_producto: GetusuariosService,private crearservice_producto: RegristrarService,private carritoservice_producto: RegristrarService) { }
@@ -89,10 +96,13 @@ export class ProductoComponent implements OnInit {
 
   Comentario : ComentarioInterface [] = [];
 
+  Bitacora : BitacoraInterface [] =[];
+
   
 
   nproducto(){
     console.log("estoy dentro de nproducto")
+    let usuariolegeado=this.authService.get_currentuser()
 
     this.crearservice_producto.registrar_producto(this.producto.nombre,this.producto.detalle,this.producto.pclave,this.producto.precio,this.producto.mg,this.producto.nmg,this.producto.idcategoria)
       
@@ -100,6 +110,7 @@ export class ProductoComponent implements OnInit {
         (res: ProductoInterface[]) => {
           this.Producto= res;
           this.npublicacionp();
+          this.nbitacora("Se realizo una publicacion del producto "+this.producto.nombre,usuariolegeado.CORREO);
         },
         err =>{
           console.log(err);
@@ -115,7 +126,7 @@ export class ProductoComponent implements OnInit {
       .subscribe(
         (res: PublicacionInterface[]) => {
           this.Publicacion= res;
-          
+         
         },
         err =>{
           console.log(err);
@@ -128,11 +139,13 @@ export class ProductoComponent implements OnInit {
 
   ncomentario(){
 
+    let usuariolegeado=this.authService.get_currentuser();
+
     this.crearservice_producto.registrar_comentario(this.comentario.descripcioncomentario,this.comentario.idproducto=this.producto.idproducto)
       .subscribe(
         (res: ComentarioInterface[]) => {
           this.Comentario= res;
-          
+          this.nbitacora("Se realizo un comentario para el producto "+this.producto.nombre,usuariolegeado.CORREO);
         },
         err =>{
           console.log(err);
@@ -144,11 +157,13 @@ export class ProductoComponent implements OnInit {
 
   get_comentario_producto(idprod){
 
+    let usuariolegeado=this.authService.get_currentuser();
+
     this.getserice_producto.getcomentarioproducto(idprod)
       .subscribe(
         (res: ComentarioInterface[]) => {
           this.Comentario= res;
-          
+          this.nbitacora("Se vieron los comentarios"+this.producto.nombre,usuariolegeado.CORREO);
         },
         err =>{
           console.log(err);
@@ -165,7 +180,7 @@ export class ProductoComponent implements OnInit {
     .subscribe(
       (res: CarritoInterface[]) => {
         this.Carrito= res;
-        
+        this.nbitacora("Se colocoe el produccto "+this.producto.nombre+" en el carrito",usuariolegeado.CORREO);
       },
       err =>{
         console.log(err);
@@ -197,17 +212,35 @@ export class ProductoComponent implements OnInit {
 
   comprarcarrito(idcarrito){
 
+    let usuariolegeado=this.authService.get_currentuser();
+
     this.crearservice_producto.registrar_compra(idcarrito)
     .subscribe(
       (res: CompraINterface[]) => {
         this.Compra= res;
-        
+        this.nbitacora("Se compro el producto "+this.producto.nombre+" en el carrito",usuariolegeado.CORREO);
       },
       err =>{
         console.log(err);
       }
     )
 
+
+  }
+
+
+  nbitacora(descripcion,correo){
+
+    this.crearservice_producto.registrar_bitacora(descripcion,correo)
+    .subscribe(
+      (res: BitacoraInterface[]) => {
+        this.Bitacora= res;
+        
+      },
+      err =>{
+        console.log(err);
+      }
+    )
 
   }
 

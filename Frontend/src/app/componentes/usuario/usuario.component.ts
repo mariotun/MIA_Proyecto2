@@ -7,6 +7,8 @@ import { GetusuariosService } from '../../servicios/getusuarios.service';
 import { ActivatedRoute } from '@angular/router';//es para el chat
 import { WebsocketService } from '../../servicios/websocket.service'
 
+import { ProductoComponent} from '../producto/producto.component'
+
 @Component({
   selector: 'app-usuario',
   templateUrl: './usuario.component.html',
@@ -14,7 +16,8 @@ import { WebsocketService } from '../../servicios/websocket.service'
 })
 export class UsuarioComponent implements OnInit {
 
-  constructor(private activated:ActivatedRoute,private webservice:WebsocketService,private authService: GetusuariosService,private crearservice_updateuser: RegristrarService,private cerrarsesion_services:GetusuariosService,private unicouser_services:GetusuariosService) { }
+  constructor(private activated:ActivatedRoute,private webservice:WebsocketService,private authService: GetusuariosService,
+    private crearservice_updateuser: RegristrarService,private cerrarsesion_services:GetusuariosService,private unicouser_services:GetusuariosService) { }
 
   User={
     name:""
@@ -28,6 +31,7 @@ export class UsuarioComponent implements OnInit {
   myMessages;
   eventName="send-message";
 
+  private bitacora:ProductoComponent;
 
 
 
@@ -83,7 +87,7 @@ export class UsuarioComponent implements OnInit {
     .subscribe(
       (res: UserInterface[]) => {
         this.Usuarios= res;
-        
+        this.bitacora.nbitacora("Se actualizaron los datos del usuario",this.user.email);
       },
       err =>{
         console.log(err);
@@ -95,6 +99,7 @@ export class UsuarioComponent implements OnInit {
 
 cerrar_sesion(){
   this.cerrarsesion_services.logout();
+  this.bitacora.nbitacora("Se acaba de cerra sesion",this.user.email);
 }
 
 

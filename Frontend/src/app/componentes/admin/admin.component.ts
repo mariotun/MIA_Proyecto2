@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { GetusuariosService } from '../../servicios/getusuarios.service'; 
+import { BitacoraInterface } from '../../models/user-interface';
 
 @Component({
   selector: 'app-admin',
@@ -10,7 +12,9 @@ export class AdminComponent implements OnInit {
 
   
 
-  constructor() { }
+  constructor(private bitacora:GetusuariosService) { }
+
+  Bitacora : BitacoraInterface [] =[];
 
   ngOnInit(): void {
 
@@ -22,9 +26,27 @@ export class AdminComponent implements OnInit {
   //es para las categorias
   regicategoria(){
 
-    
 
   }
 
 
+  //es para mostrar el preporte de la bitacora
+  mostrarbitacora(){
+
+    this.bitacora.getbitacora()
+    .subscribe(
+      (res: BitacoraInterface[]) => {
+        this.Bitacora= res;
+        
+      },
+      err =>{
+        console.log(err);
+      }
+    )
+
+  }
+
+
+
+  
 }

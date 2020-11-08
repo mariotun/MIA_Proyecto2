@@ -67,6 +67,15 @@ export class GetusuariosService {
     return this.http.get(url3);
   }
 
+  
+  //ES PARA OBTENER EL REPORTE DE LA BITACORA
+  getbitacora(){
+    const url10="http://localhost:3000/getbitacora";
+    return this.http.get(url10);
+  }
+
+
+
   //ES PARA INICIAR SESION
   Login(correo,constrasena){
 
