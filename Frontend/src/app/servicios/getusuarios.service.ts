@@ -28,6 +28,12 @@ export class GetusuariosService {
 
   }
 
+  //ES PARA OBTENER LOS COMENTARIOS DE LOS PRODUCTOS
+  getcomentarioproducto(idproducto){
+    const url8="http://localhost:3000/getcomentario/"+idproducto;
+    return this.http.get(url8);
+  }
+
   //ES PARA OBTENER LOS PRODUCTOS DEL CARRITO DE UN CLIENTE
   getcarritousuario(idcliente){
     const url5="http://localhost:3000/getcarrito/"+idcliente;

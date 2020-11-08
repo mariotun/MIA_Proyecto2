@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { GetusuariosService } from 'src/app/servicios/getusuarios.service';
 import { RegristrarService } from 'src/app/servicios/regristrar.service';
-import { CompraINterface, ProductoInterface, PublicacionInterface } from '../../models/user-interface';
+import { ComentarioInterface, CompraINterface, ProductoInterface, PublicacionInterface } from '../../models/user-interface';
 import { CategoriaInterface,CarritoInterface } from '../../models/user-interface';
 
 
@@ -15,7 +15,7 @@ export class ProductoComponent implements OnInit {
   
 
   producto={
-    
+      idproducto:null,
       nombre:"",
       detalle:"",
       pclave:"",
@@ -49,6 +49,13 @@ export class ProductoComponent implements OnInit {
 
   }
 
+  comentario={
+    idcomentario: null,
+    fechacomentario: "",
+    descripcioncomentario: "",
+    idproducto: null
+  }
+
 
 
   constructor(private authService: GetusuariosService,private getservice_categoria: GetusuariosService,private getserice_producto: GetusuariosService,private crearservice_producto: RegristrarService,private carritoservice_producto: RegristrarService) { }
@@ -79,6 +86,8 @@ export class ProductoComponent implements OnInit {
   Compra : CompraINterface[] = [];
 
   Publicacion : PublicacionInterface [] = [];
+
+  Comentario : ComentarioInterface [] = [];
 
   
 
@@ -113,6 +122,38 @@ export class ProductoComponent implements OnInit {
         }
       )
 
+
+  }
+  
+
+  ncomentario(){
+
+    this.crearservice_producto.registrar_comentario(this.comentario.descripcioncomentario,this.comentario.idproducto=this.producto.idproducto)
+      .subscribe(
+        (res: ComentarioInterface[]) => {
+          this.Comentario= res;
+          
+        },
+        err =>{
+          console.log(err);
+        }
+      )
+
+
+  }
+
+  get_comentario_producto(idprod){
+
+    this.getserice_producto.getcomentarioproducto(idprod)
+      .subscribe(
+        (res: ComentarioInterface[]) => {
+          this.Comentario= res;
+          
+        },
+        err =>{
+          console.log(err);
+        }
+      )
 
   }
 
@@ -174,8 +215,8 @@ export class ProductoComponent implements OnInit {
   
 
   //ENVIAR DETALLE
-  set_detalleproducto(nombre,detalle,pclaves,precio){
-
+  set_detalleproducto(idprod,nombre,detalle,pclaves,precio){
+    this.producto.idproducto=idprod;
     this.producto.nombre=nombre;
     this.producto.detalle=detalle;
     this.producto.pclave=pclaves;

@@ -599,7 +599,31 @@ router.post('/compra', async (req, res) =>{
 
 })
 
+//*******************************************COMPRA******************************************************************************
+router.get('/getcompra', async (req,res)=>{
 
+    
+    consulta="select *from compra"
+   
+    let result = await BD.Open(consulta, [], false);
+    Compras = [];
+
+    //res.json(result.rows);
+    //console.log(result.rows);
+
+    result.rows.map(compra => {
+        let compraSchema = {
+            "IDCOMPRA":compra[0],
+            "IDCARRITO":compra[1]
+        }
+
+        Compras.push(compraSchema);
+    })
+
+    res.json(Compras);
+    //res,json(user);
+
+})
 
 //*******************************************DETALLE_COMPRA****************************************************************************
 router.post('/detallecompra', async (req, res) =>{
@@ -711,11 +735,13 @@ router.post('/comentario', async (req, res) =>{
 })
 
 //*********************************************GET_COMENTARIO******************************************************************
-router.get('/getcomentario', async (req,res)=>{
+router.get('/getcomentario/:IDPRODUCTO', async (req,res)=>{
 
-    consulta="select *from comentario"
+    const { IDPRODUCTO } = req.params;
+
+    consulta="select *from comentario where IDPRODUCTO=:IDPRODUCTO"
    
-    let result = await BD.Open(consulta, [], false);
+    let result = await BD.Open(consulta, [IDPRODUCTO], false);
     Comentarios = [];
 
     //res.json(result.rows);

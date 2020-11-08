@@ -86,10 +86,11 @@ function validar_categoria(data){
 
     const { IDCATEGORIA, NOMBRECATEGORIA} = data;
 
-    if ( typeof IDCATEGORIA !=="number"){
+    /*if ( typeof IDCATEGORIA !=="number"){
         return "El ID de la categoria no es el correcto para ser registrado.";
 
-    }else if(typeof NOMBRECATEGORIA !== "string" || NOMBRECATEGORIA === ""){
+    }else*/
+     if(typeof NOMBRECATEGORIA !== "string" || NOMBRECATEGORIA === ""){
         return "El nombre de la categoria no es valido para ser registrado.";
     }
 
@@ -103,10 +104,11 @@ function validar_producto(data){
 
     const { IDPRODUCTO, NOMBRE, DETALLE, PALABRASCLAVE,PRECIO, MEGUSTA, NOMEGUSTA, IDCATEGORIA} = data;
 
-    if ( typeof IDPRODUCTO !=="number"){
+   /* if ( typeof IDPRODUCTO !=="number"){
         //throw new Error("El ID no es el correcto para ser registrado.");
         return "El ID del producto no es el correcto para ser registrado.";
-    }else if ( typeof NOMBRE !== "string" || NOMBRE === "" ){
+    }else */
+    if ( typeof NOMBRE !== "string" || NOMBRE === "" ){
         //throw new Error("El nombre no es valido para ser registrado.");
         return "El nombre no es valido para ser registrado.";
     }else if(typeof DETALLE !== "string" || DETALLE === "" ){
@@ -139,10 +141,11 @@ function validar_carrito(data){
 
     const { IDCARRITO, CANTIDAD, PRECIOUNITARIO, SUBTOTAL,PRODUCTO, IDCLIENTE,COMPRO} = data;
 
-    if ( typeof IDCARRITO !=="number"){
+    /*if ( typeof IDCARRITO !=="number"){
         //throw new Error("El ID no es el correcto para ser registrado.");
         return "El ID del carrito no es el correcto para ser registrado.";
-    }else if ( typeof CANTIDAD !== "number" || CANTIDAD === null || CANTIDAD <= 0 ){
+    }else */
+    if ( typeof CANTIDAD !== "number" || CANTIDAD === null || CANTIDAD <= 0 ){
         //throw new Error("El nombre no es valido para ser registrado.");
         return "La cantidad no es valida para ser registrado.";
     }else if(typeof PRECIOUNITARIO !== "number" || PRECIOUNITARIO === null ){
@@ -171,10 +174,11 @@ function validar_dcompra(data){
 
     const {  IDDETALLECOMPRA, CANTIDADCOMPRA, TOTALCOMPRA, IDCOMPRA,IDPRODUCTO} = data;
 
-    if ( typeof IDDETALLECOMPRA !=="number"){
+   /* if ( typeof IDDETALLECOMPRA !=="number"){
         //throw new Error("El ID no es el correcto para ser registrado.");
         return "El ID del detalle de compra no es el correcto para ser registrado.";
-    }else if ( typeof CANTIDADCOMPRA !== "number" || CANTIDADCOMPRA === null || CANTIDADCOMPRA <= 0 ){
+    }else*/ 
+    if ( typeof CANTIDADCOMPRA !== "number" || CANTIDADCOMPRA === null || CANTIDADCOMPRA <= 0 ){
         //throw new Error("El nombre no es valido para ser registrado.");
         return "La cantidad de la compra no es valida para ser registrado.";
     }else if(typeof TOTALCOMPRA !== "number" || TOTALCOMPRA === null || TOTALCOMPRA <= 0 ){
@@ -197,19 +201,21 @@ function validar_comentario(data){
 
     const {  IDCOMENTARIO, FECHA, DESCRIPCION, IDPRODUCTO} = data;
 
-    if ( typeof IDCOMENTARIO !=="number"){
+   /* if ( typeof IDCOMENTARIO !=="number"){
         //throw new Error("El ID no es el correcto para ser registrado.");
         return "El ID del comentario no es el correcto para ser registrado.";
-    }else if ( typeof FECHA !== "string" || FECHA=== ""){
+    }else*/ 
+    if ( typeof FECHA !== "string" || FECHA=== ""){
         //throw new Error("El nombre no es valido para ser registrado.");
         return "La fecha no es valida para ser registrado.";
     }else if(typeof DESCRIPCION !== "string" || DESCRIPCION === ""){
         //throw new Error("El apellido no es valido para ser registrado.");
         return "La descripcion no es valido para ser registrado.";
-    }else if( typeof IDPRODUCTO !== "number" ){
+    }
+    /*else if( typeof IDPRODUCTO !== "number" ){
         //throw new Error("La contrasena no es valido para ser registrado.");
         return "El id del producto no es valido para ser registrado.";
-    }
+    }*/
 
     return "";
 
@@ -220,10 +226,11 @@ function validar_publicacion(data){
 
     const {  IDPUBLICACION, FECHAPUBLICACION, CANTIDADPUBLICACION, ESTADO, IDCLIENTE} = data;
 
-    if ( typeof IDPUBLICACION !=="number"){
+    /*if ( typeof IDPUBLICACION !=="number"){
         //throw new Error("El ID no es el correcto para ser registrado.");
         return "El ID de la publicacion no es el correcto para ser registrado.";
-    }else if ( typeof FECHAPUBLICACION !== "string" || FECHAPUBLICACION=== ""){
+    }else */
+    if ( typeof FECHAPUBLICACION !== "string" || FECHAPUBLICACION=== ""){
         //throw new Error("El nombre no es valido para ser registrado.");
         return "La fecha de la publicacion no es valida para ser registrado.";
     }else if(typeof CANTIDADPUBLICACION !== "number" || CANTIDADPUBLICACION === null){
@@ -246,10 +253,11 @@ function validar_denuncia(data){
 
     const {  IDDENUNCIA, FECHADENUNCIA, DESCRIPCION ,CANTIDAD, IDPUBLICACION} = data;
 
-    if ( typeof IDDENUNCIA !=="number"){
+    /*if ( typeof IDDENUNCIA !=="number"){
         //throw new Error("El ID no es el correcto para ser registrado.");
         return "El ID de la denuncia no es el correcto para ser registrado.";
-    }else if ( typeof FECHADENUNCIA !== "string" || FECHADENUNCIA=== ""){
+    }else*/
+     if ( typeof FECHADENUNCIA !== "string" || FECHADENUNCIA=== ""){
         //throw new Error("El nombre no es valido para ser registrado.");
         return "La fecha de la denucia no es valida para ser registrado.";
     }else if(typeof DESCRIPCION !== "string" || DESCRIPCION === ""){
@@ -272,10 +280,11 @@ function validar_detalleventa(data){
 
     const {  IDDETALLEVENTA, CANTIDADVENTA, TOTALVENTA , IDVENTA, IDPRODUCTO} = data;
 
-    if ( typeof IDDETALLEVENTA !=="number"){
+   /* if ( typeof IDDETALLEVENTA !=="number"){
         //throw new Error("El ID no es el correcto para ser registrado.");
         return "El ID del detalle de venta no es el correcto para ser registrado.";
-    }else if ( typeof CANTIDADVENTA !== "number" || CANTIDADVENTA===null){
+    }else */
+    if ( typeof CANTIDADVENTA !== "number" || CANTIDADVENTA===null){
         //throw new Error("El nombre no es valido para ser registrado.");
         return "La cantidad de venta no es valida para ser registrado.";
     }else if(typeof TOTALVENTA !== "number" || TOTALVENTA === null){
@@ -298,10 +307,11 @@ function validar_bitacora(data){
 
     const {  IDBITACORA, DESCRIPCION, FECHAACCION , CORREO} = data;
 
-    if ( typeof IDBITACORA !=="number"){
+    /*if ( typeof IDBITACORA !=="number"){
         //throw new Error("El ID no es el correcto para ser registrado.");
         return "El ID de la bitacora no es el correcto para ser registrado.";
-    }else if ( typeof DESCRIPCION !== "string" || DESCRIPCION==="" ){
+    }else*/ 
+    if ( typeof DESCRIPCION !== "string" || DESCRIPCION==="" ){
         //throw new Error("El nombre no es valido para ser registrado.");
         return "La descripcion para la bitacora no es valida para ser registrado.";
     }else if(typeof FECHAACCION !== "string" || FECHAACCION === "" ){

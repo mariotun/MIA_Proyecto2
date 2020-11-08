@@ -32,13 +32,25 @@ export class SigninComponent implements OnInit {
    this.login_services.Login(this.user.email,this.user.passwordu).subscribe((res) => {
     // console.log(res);
     if (res['msg']) {
-      let DataUser: UserInterface = res['DataUser'];
-      this.login_services.set_currentuser(DataUser);
-      this.router.navigate(['/usuario']);
+
+      if(this.user.email==="admin123@gmail.com" && this.user.passwordu==="admin123"){
+        let DataUser: UserInterface = res['DataUser'];
+        this.login_services.set_currentuser(DataUser);
+        this.router.navigate(['/administrador']);
+
+      }else{
+        let DataUser: UserInterface = res['DataUser'];
+        this.login_services.set_currentuser(DataUser);
+        this.router.navigate(['/usuario']);
+
+      }
 
     } else {
         console.log('Credenciales Incorrectas');
     }
+
+
+
   })
 
 

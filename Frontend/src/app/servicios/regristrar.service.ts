@@ -188,7 +188,6 @@ const url7="http://localhost:3000/compra";
 
 
  //ES PARA REGISTRAR LA BITACORA*************************************************************************************
-
 registrar_bitacora(descripcion:string,correo:string){
 
   const url8="http://localhost:3000/bitacora";
@@ -209,6 +208,25 @@ registrar_bitacora(descripcion:string,correo:string){
 } 
 
 
+//ES PARA REGISTRAR LOS COMENTARIOS DE UN PRODUCO **********************************************************************
+registrar_comentario(comentario:string,idproducto:number){
+
+  const url9="http://localhost:3000/comentario";
+  var f = new Date();
+
+   return this.http.post(
+    url9,
+    { 
+      "IDCOMENTARIO": null,
+      "FECHA": f.getDate() + "/" + (f.getMonth() +1) + "/" + f.getFullYear(),
+      "DESCRIPCION": comentario,
+      "IDPRODUCTO": idproducto
+      
+    },
+    { headers: this.headers }
+  ).pipe(map(data => data));
+
+}
 
 
 

@@ -120,21 +120,20 @@
         <div class="card-body " >
 
 
-          <div style="width: 40%; margin: auto; margin-top: 100px;">
+          <div  style="width: 30%; margin: auto; margin-top: 100px; ">
 
            <!-- <div>
               <input type="text" class="form-control" [(ngModel)]="User.name">
             </div>-->
 
             <div >
-              <label for="">Hola <span style="font-weight: bold;">nombre1</span>Escriba un mensaje</label>
+              <label for="">Escriba el mensaje</label>
               <input type="text" class="form-control" (change)="myMessage()" [(ngModel)]="userchat.text" required autofocus>
             </div>
 
-            <div class="mt-3">
+            <div class="mt-3" data-spy="scroll">
               <div *ngFor="let a of myMessages">
-                <button class="primary"></button>
-                <label for="" style="font-weight: bold;">{{a.user}}</label>
+                <label for="" style="font-weight: bold;">usuairo: </label>
                 <span>{{a.text}}</span>
               </div>
 
