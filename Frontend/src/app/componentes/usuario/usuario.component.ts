@@ -58,7 +58,7 @@ export class UsuarioComponent implements OnInit {
   ngOnInit(): void {
 
     const id=this.activated.snapshot.params.id;
-    this.userchat.user="mario";
+    this.userchat.user=this.authService.get_currentuser().NOMBRE;
     this.webservice.listen('text-event').subscribe((data)=>{
       this.myMessages=data;
     })
@@ -87,7 +87,7 @@ export class UsuarioComponent implements OnInit {
     .subscribe(
       (res: UserInterface[]) => {
         this.Usuarios= res;
-        this.bitacora.nbitacora("Se actualizaron los datos del usuario",this.user.email);
+        this.bitacora.nbitacora("Se actualizaron los datos del usuario ",this.user.email);
       },
       err =>{
         console.log(err);
@@ -99,7 +99,7 @@ export class UsuarioComponent implements OnInit {
 
 cerrar_sesion(){
   this.cerrarsesion_services.logout();
-  this.bitacora.nbitacora("Se acaba de cerra sesion",this.user.email);
+  this.bitacora.nbitacora("Se acaba de cerrar sesion ",this.user.email);
 }
 
 

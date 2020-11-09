@@ -1,5 +1,21 @@
 
 
+<nav class="navbar navbar-expand-lg navbar-light bg-primary">
+  <div class="container">
+
+  <div class="collapse navbar-collapse" id="navbarText">
+    <ul class="navbar-nav ml-auto">
+     
+      <button class="btn btn-secondary" (click)="cerrar_sesion()" >Cerrar Sesion</button>
+      
+    </ul>
+   
+  </div>
+
+</div>
+</nav>
+
+
 
     <div class="container p-3">
     <div class="card">
@@ -32,7 +48,6 @@
           
                 <div class="text-center mt-4">
                   <button class="btn btn-primary text-align-center mr-3"  type="submit" (click)="mostrarbitacora()" >Bitacora </button>  
-                  
                 </div> 
           
                 <form class="mt-3" >
@@ -59,6 +74,121 @@
                   </table>
                 </form>
           
+                <!--**************************-->
+                <div class="text-center mt-4">
+                  <button class="btn btn-primary text-align-center mr-3"  type="submit" (click)="mostrarreporte2()" >Productos mas vendidos</button>  
+                </div> 
+          
+                <form class="mt-3" >
+          
+                  
+                  <table class="table table-hover">
+                    <thead>
+                      <tr>
+                        <th scope="col">Producto</th>
+                        <th scope="col">Total</th>
+          
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let rp2 of Reporte2">
+                        <td >{{rp2.PRODUCTO}}</td>
+                        <td>{{rp2.TOTAL}}</td>
+                       
+                      </tr>
+          
+                    </tbody>
+                  </table>
+                </form>
+
+
+                <!--****************************-->
+
+                <div class="text-center mt-4">
+                  <button class="btn btn-primary text-align-center mr-3"  type="submit" (click)="mostrarreporte5()" >Clientes con mas y menos creditos</button>  
+                </div> 
+          
+                <form class="mt-3" >
+          
+                  
+                  <table class="table table-hover">
+                    <thead>
+                      <tr>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Correo</th>
+                        <th scope="col">Total</th>
+          
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let rp5 of Reporte5">
+                        <td >{{rp5.NOMBRE}}</td>
+                        <td>{{rp5.CORREO}}</td>
+                        <td>{{rp5.TOTAL}}</td>
+                       
+                      </tr>
+          
+                    </tbody>
+                  </table>
+                </form>
+
+                <!--************************-->
+
+                <div class="text-center mt-4">
+                  <button class="btn btn-primary text-align-center mr-3"  type="submit" (click)="mostrarreporte7()" >Clientes con mas publicaciones</button>  
+                </div> 
+          
+                <form class="mt-3" >
+          
+                  
+                  <table class="table table-hover">
+                    <thead>
+                      <tr>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Correo</th>
+                        <th scope="col">Cantidad</th>
+          
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let rp7 of Reporte7">
+                        <td >{{rp7.NOMBRE}}</td>
+                        <td>{{rp7.CORREO}}</td>
+                        <td>{{rp7.CANTIDAD}}</td>
+                       
+                      </tr>
+          
+                    </tbody>
+                  </table>
+                </form>
+
+                <!--**************************-->
+
+                <div class="text-center mt-4">
+                  <button class="btn btn-primary text-align-center mr-3"  type="submit" (click)="mostrarreporte8()" >Paises con mas creditos</button>  
+                </div> 
+          
+                <form class="mt-3" >
+          
+                  
+                  <table class="table table-hover">
+                    <thead>
+                      <tr>
+                        <th scope="col">Pais</th>
+                        <th scope="col">Total</th>
+          
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let rp8 of Reporte8">
+                        <td >{{rp8.PAIS}}</td>
+                        <td>{{rp8.TOTAL}}</td>
+                      </tr>
+          
+                    </tbody>
+                  </table>
+                </form>
+
           
         </div>
       </div>
@@ -68,9 +198,7 @@
       <div class="card ">
         <h5 class="card-header">DENUNCIAS</h5>
         <div class="card-body">
-          <h5 class="card-title">Special title treatment</h5>
-          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
+          
         </div>
       </div>
     </div>

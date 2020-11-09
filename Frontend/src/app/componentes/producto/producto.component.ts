@@ -110,7 +110,7 @@ export class ProductoComponent implements OnInit {
         (res: ProductoInterface[]) => {
           this.Producto= res;
           this.npublicacionp();
-          this.nbitacora("Se realizo una publicacion del producto "+this.producto.nombre,usuariolegeado.CORREO);
+          this.nbitacora("Se realizo una publicacion del producto \""+this.producto.nombre+"\"",usuariolegeado.CORREO);
         },
         err =>{
           console.log(err);
@@ -145,7 +145,7 @@ export class ProductoComponent implements OnInit {
       .subscribe(
         (res: ComentarioInterface[]) => {
           this.Comentario= res;
-          this.nbitacora("Se realizo un comentario para el producto "+this.producto.nombre,usuariolegeado.CORREO);
+          this.nbitacora("Se realizo un comentario para el producto \""+this.producto.nombre+"\"",usuariolegeado.CORREO);
         },
         err =>{
           console.log(err);
@@ -163,7 +163,7 @@ export class ProductoComponent implements OnInit {
       .subscribe(
         (res: ComentarioInterface[]) => {
           this.Comentario= res;
-          this.nbitacora("Se vieron los comentarios"+this.producto.nombre,usuariolegeado.CORREO);
+          this.nbitacora("Se vieron los comentarios del producto \""+this.producto.nombre+"\"",usuariolegeado.CORREO);
         },
         err =>{
           console.log(err);
@@ -180,7 +180,7 @@ export class ProductoComponent implements OnInit {
     .subscribe(
       (res: CarritoInterface[]) => {
         this.Carrito= res;
-        this.nbitacora("Se colocoe el produccto "+this.producto.nombre+" en el carrito",usuariolegeado.CORREO);
+        this.nbitacora("Se coloco el produccto \""+this.producto.nombre+"\" ,en el carrito",usuariolegeado.CORREO);
       },
       err =>{
         console.log(err);
@@ -199,7 +199,7 @@ export class ProductoComponent implements OnInit {
     .subscribe(
       (res: CarritoInterface[]) => {
         this.Carrito= res;
-        
+        this.nbitacora("Se mostraron los productos que esta en el carrito ",usuariolegeado.CORREO);
       },
       err =>{
         console.log(err);
@@ -218,7 +218,7 @@ export class ProductoComponent implements OnInit {
     .subscribe(
       (res: CompraINterface[]) => {
         this.Compra= res;
-        this.nbitacora("Se compro el producto "+this.producto.nombre+" en el carrito",usuariolegeado.CORREO);
+        this.nbitacora("Se compro el producto \""+this.producto.nombre+"\" , en el carrito",usuariolegeado.CORREO);
       },
       err =>{
         console.log(err);

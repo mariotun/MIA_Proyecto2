@@ -12,7 +12,7 @@ export class AdminComponent implements OnInit {
 
   
 
-  constructor(private bitacora:GetusuariosService) { }
+  constructor(private bitacora:GetusuariosService,private cerrarsesion_services:GetusuariosService) { }
 
   Bitacora : BitacoraInterface [] =[];
   Reporte2 : Reporte2Interface [] = [] ;
@@ -27,11 +27,18 @@ export class AdminComponent implements OnInit {
   }
 
 
+  cerrar_sesion(){
+    this.cerrarsesion_services.logout();
+    
+  }
+
+
   //es para las categorias
   regicategoria(){
 
 
   }
+
 
 
   //es para mostrar el preporte de la bitacora
