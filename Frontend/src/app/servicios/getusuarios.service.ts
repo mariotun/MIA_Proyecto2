@@ -67,14 +67,38 @@ export class GetusuariosService {
     return this.http.get(url3);
   }
 
-  
+
   //ES PARA OBTENER EL REPORTE DE LA BITACORA
   getbitacora(){
     const url10="http://localhost:3000/getbitacora";
     return this.http.get(url10);
   }
 
+  //ES PARA EL REPORTE 2
+  getreporte2(){
+    const url11="http://localhost:3000/reporte2";
+    return this.http.get(url11);
+  }
 
+  //ES PARA EL REPORTE 5
+  getreporte5(){
+    const url12="http://localhost:3000/reporte5";
+    return this.http.get(url12);
+  }
+
+  //ES PARA EL REPORTE 7
+  getreporte7(){
+    const url13="http://localhost:3000/reporte7";
+    return this.http.get(url13);
+  }
+
+  //ES PARA EL REPORTE 8
+  getreporte8(){
+    const url14="http://localhost:3000/reporte8";
+    return this.http.get(url14);
+  }
+
+  
 
   //ES PARA INICIAR SESION
   Login(correo,constrasena){

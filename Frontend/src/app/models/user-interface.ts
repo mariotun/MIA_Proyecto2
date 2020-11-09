@@ -99,3 +99,25 @@ export interface ChatInterface{
     USER:string,
     TEXT:string
 }
+
+export interface Reporte2Interface{
+    PRODUCTO: string,
+    TOTAL: number
+}
+
+export interface Reporte5Interface{
+    NOMBRE: string,
+    CORREO: string,
+    TOTAL: number
+}
+
+export interface Reporte7Interface{
+    NOMBRE: string,
+    CORREO: string,
+    CANTIDAD: number
+}
+
+export interface Reporte8Interface{
+    PAIS: string,
+    TOTAL: number
+}

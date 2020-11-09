@@ -1102,7 +1102,7 @@ router.post('/bitacora', async (req, res) =>{
 })
 
 
-//*******************************************GET_BITACORA****************************************************************************
+//*******************************************REPORTE_BITACORA****************************************************************************
 router.get('/getbitacora', async (req,res)=>{
 
     consulta="select *from bitacora"
@@ -1129,19 +1129,138 @@ router.get('/getbitacora', async (req,res)=>{
 
 })
 
-//***********************************************************************************************************************
+//**********************************REPORTE 10 PRODUCTOS MAS VENDIDOS****************************************************
+router.get('/reporte2', async (req,res)=>{
+
+    consulta="select car.PRODUCTO,sum(car.CANTIDAD) as total\
+    from carrito car,compra cpr\
+    where car.IDCARRITO=cpr.IDCARRITO\
+    group by  car.PRODUCTO\
+    order by total desc\
+    fetch first 10 rows only"
+   
+    let result = await BD.Open(consulta, [], false);
+    Reporte2 = [];
+
+    //res.json(result.rows);
+    //console.log(result.rows);
+
+    result.rows.map(reporte2 => {
+        let reporte2Schema = {
+            "PRODUCTO": reporte2 [0],
+            "TOTAL": reporte2[1]
+        }
+
+        Reporte2.push(reporte2Schema);
+    })
+
+    res.json(Reporte2);
+    //res,json(user);
+
+})
+
+//**********************************REPORTE 10 CLIENTES CON + Y - CREDITOS***********************************************
+router.get('/reporte5', async (req,res)=>{
+
+    consulta="(select usu.NOMBRE,usu.CORREO,usu.CREDITO as total\
+        from usuario usu\
+        group by  usu.NOMBRE,usu.CORREO,usu.CREDITO\
+        order by total desc \
+        fetch first 5 rows only)\
+        union\
+        (select usu.NOMBRE,usu.CORREO,usu.CREDITO as total\
+        from usuario usu\
+        group by  usu.NOMBRE,usu.CORREO,usu.CREDITO\
+        order by total asc\
+        fetch first 5 rows only)"
+   
+    let result = await BD.Open(consulta, [], false);
+    Reporte5 = [];
+
+    //res.json(result.rows);
+    //console.log(result.rows);
+
+    result.rows.map(reporte5 => {
+        let reporte5Schema = {
+            "NOMBRE": reporte5 [0],
+            "CORREO": reporte5 [1],
+            "TOTAL": reporte5 [2]
+        }
+
+        Reporte5.push(reporte5Schema);
+    })
+
+    res.json(Reporte5);
+    //res,json(user);
+
+})
+
+//**********************************REPORTE 10 CLIENTES MAS PUBLICACIONES************************************************
+router.get('/reporte7', async (req,res)=>{
+
+    consulta="select  usu.NOMBRE,usu.CORREO , count(pub.IDCLIENTE) as cantidad\
+    from publicacion pub,usuario usu\
+    where usu.IDCLIENTE=pub.IDCLIENTE\
+    group by  usu.NOMBRE,usu.CORREO\
+    order by cantidad desc\
+    fetch first 10 rows only"
+   
+    let result = await BD.Open(consulta, [], false);
+    Reporte7 = [];
+
+    //res.json(result.rows);
+    //console.log(result.rows);
+
+    result.rows.map(reporte7 => {
+        let reporte7Schema = {
+            "NOMBRE": reporte7[0],
+            "CORREO": reporte7[1],
+            "CANTIDAD": reporte7[2]
+        }
+
+        Reporte7.push(reporte7Schema);
+    })
+
+    res.json(Reporte7);
+    //res,json(user);
+
+})
+
+//**********************************REPORTE 1O PAISES CON MAS CREDITOS*************************************************
+router.get('/reporte8', async (req,res)=>{
+
+    consulta="select usu.PAIS,sum(usu.CREDITO) as total\
+    from usuario usu\
+    group by usu.PAIS\
+    order by total desc\
+    fetch first 10 rows only"
+   
+    let result = await BD.Open(consulta, [], false);
+    Reporte8 = [];
+
+    //res.json(result.rows);
+    //console.log(result.rows);
+
+    result.rows.map(reporte8 => {
+        let reporte8Schema = {
+            "PAIS": reporte8 [0],
+            "TOTAL": reporte8[1]
+        }
+
+        Reporte8.push(reporte8Schema);
+    })
+
+    res.json(Reporte8);
+    //res,json(user);
+
+})
 
 
-//***********************************************************************************************************************
-
-
-//***********************************************************************************************************************
-
-
-//***********************************************************************************************************************
 
 
 
+
+/*
 //READ
 router.get('/getUsers', async (req, res) => {
     sql = "select * from person where state=1";
@@ -1209,7 +1328,7 @@ router.delete("/deleteUser/:codu", async (req, res) => {
     res.json({ "msg": "Usuario Eliminado" })
 
     //res.status(400).json({ "msg": "Usuario Eliminado" })
-})
+})*/
 
 
 module.exports = router;
