@@ -110,6 +110,7 @@ router.post('/signup', async (req, res) =>{
 
     var respuesta=await BD.Open(sql, [IDCLIENTE, NOMBRE, APELLIDO, CORREO,CONTRASENA, CCONTRASENA, FECHANACIMIENTO, PAIS, CREDITO ,FOTOGRAFIA ,TIPOUSUARIO], true);
 
+    console.log("pais: ",typeof PAIS);
     /*res.status(200).json({
         "IDCLIENTE": IDCLIENTE,
         "NOMBRE": NOMBRE,
