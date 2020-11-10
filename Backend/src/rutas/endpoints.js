@@ -47,7 +47,7 @@ router.post('/signin',async(req,res) =>{
 
     const { CORREO, CONTRASENA } = req.body;
 
-    consulta = "select IDCLIENTE,NOMBRE,CORREO,CONTRASENA from usuario where CORREO=:CORREO and CONTRASENA=:CONTRASENA"; 
+    consulta = "select IDCLIENTE,NOMBRE,APELLIDO,CORREO,CONTRASENA,CCONTRASENA,FECHANACIMIENTO,PAIS,CREDITO from usuario where CORREO=:CORREO and CONTRASENA=:CONTRASENA"; 
 
     let result = await BD.Open(consulta,[ CORREO, CONTRASENA ],false);
 
@@ -61,8 +61,13 @@ router.post('/signin',async(req,res) =>{
                 DataUser:{
                     "IDCLIENTE":result.rows[0][0],
                     "NOMBRE":result.rows[0][1],
-                    "CORREO":result.rows[0][2],
-                    "CONTRASENA":result.rows[0][3]
+                    "APELLIDO":result.rows[0][2],
+                    "CORREO":result.rows[0][3],
+                    "CONTRASENA":result.rows[0][4],
+                    "CCONTRASENA":result.rows[0][5],
+                    "FECHANACIMIENTO":result.rows[0][6],
+                    "PAIS":result.rows[0][7],
+                    "CREDITO": result.rows[0][8]
 
                 }
             }

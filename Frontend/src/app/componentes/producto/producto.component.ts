@@ -1,8 +1,9 @@
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
 import { GetusuariosService } from 'src/app/servicios/getusuarios.service';
 import { RegristrarService } from 'src/app/servicios/regristrar.service';
 import { ComentarioInterface, CompraINterface, ProductoInterface, PublicacionInterface } from '../../models/user-interface';
-import { CategoriaInterface,CarritoInterface,BitacoraInterface } from '../../models/user-interface';
+import { CategoriaInterface,CarritoInterface,BitacoraInterface,UserInterface } from '../../models/user-interface';
 
 
 @Component({
@@ -65,7 +66,7 @@ export class ProductoComponent implements OnInit {
 
 
 
-  constructor(private authService: GetusuariosService,private getservice_categoria: GetusuariosService,private getserice_producto: GetusuariosService,private crearservice_producto: RegristrarService,private carritoservice_producto: RegristrarService) { }
+  constructor(private crearservice_updateuser: RegristrarService,private authService: GetusuariosService,private getservice_categoria: GetusuariosService,private getserice_producto: GetusuariosService,private crearservice_producto: RegristrarService,private carritoservice_producto: RegristrarService) { }
 
   ngOnInit(): void {
 
@@ -98,7 +99,8 @@ export class ProductoComponent implements OnInit {
 
   Bitacora : BitacoraInterface [] =[];
 
-  
+  Usuarios: UserInterface[] = [];
+
 
   nproducto(){
     console.log("estoy dentro de nproducto")
@@ -210,23 +212,48 @@ export class ProductoComponent implements OnInit {
   }
 
 
-  comprarcarrito(idcarrito){
+  comprarcarrito(idcarrito,subtotal){
 
-    let usuariolegeado=this.authService.get_currentuser();
-
+    let usulogeado=this.authService.get_currentuser();
+    var total=(usulogeado.CREDITO) - (subtotal);
+    console.log("---->",usulogeado.CREDITO,"---->",subtotal)
+    if ( total >= 0 ){
     this.crearservice_producto.registrar_compra(idcarrito)
     .subscribe(
       (res: CompraINterface[]) => {
         this.Compra= res;
-        this.nbitacora("Se compro el producto \""+this.producto.nombre+"\" , en el carrito",usuariolegeado.CORREO);
+        this.nbitacora("Se compro el producto \""+this.producto.nombre+"\" , en el carrito",usulogeado.CORREO);
+        this.updateusuario2();
+
       },
       err =>{
         console.log(err);
       }
     )
 
+  }else{
+    console.log("¡¡¡¡¡¡ EL CREDITO NO ES SUFICIENTE PARA HACER LA OPERACION (COMPRA)!!!!!",total)
+  }
 
   }
+  updateusuario2() {
+
+    let usulogeado=this.authService.get_currentuser();
+    let total=usulogeado.CREDITO-this.carrito.subtotal;
+
+      this.crearservice_updateuser.actualizar_usuario(usulogeado.IDCLIENTE,usulogeado.NOMBRE,usulogeado.APELLIDO,usulogeado.CORREO,usulogeado.CONTRASENA,usulogeado.CCONTRASENA,"23/8/1984",usulogeado.PAIS,total,"/home/mario","cliente")
+    .subscribe(
+      (res: UserInterface[]) => {
+        this.Usuarios= res;
+        
+      },
+      err =>{
+        console.log(err);
+      }
+    )
+    
+  }
+
 
 
   nbitacora(descripcion,correo){
