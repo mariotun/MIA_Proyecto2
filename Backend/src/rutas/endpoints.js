@@ -1173,7 +1173,7 @@ router.get('/reporte5', async (req,res)=>{
         group by  usu.NOMBRE,usu.CORREO,usu.CREDITO\
         order by total desc \
         fetch first 5 rows only)\
-        union\
+        union all\
         (select usu.NOMBRE,usu.CORREO,usu.CREDITO as total\
         from usuario usu\
         group by  usu.NOMBRE,usu.CORREO,usu.CREDITO\
